@@ -30,8 +30,9 @@ class m130524_201442_init extends Migration
             'name' => $this->string()->notNull(),
             'code' => $this->integer()->notNull()->unique(),
             'place' => $this->string()->notNull(),
-            'sale_price' => $this->float()->notNull(),
+            'sell_price' => $this->float()->notNull(),
             'purchase_price' => $this->float()->notNull(),
+            'margin' => $this->smallInteger()->Null(),
             'mark' => $this->string()->notNull(),
             'body' => $this->string()->notNull(),
             'drive' => $this->string()->notNull(),
@@ -55,6 +56,7 @@ class m130524_201442_init extends Migration
             'delevery' => $this->string()->notNull()->unique(),
             'owner' => $this->string(32)->notNull(),
             'delevery_date'=> $this->integer()->notNull(),
+            'description' => $this->string()->defaultValue(''),
             'sit_id' =>$this->integer()->notNull(),
             'status' => $this->smallInteger()->notNull()->defaultValue(10),
             'created_at' => $this->integer()->notNull(),
@@ -66,10 +68,27 @@ class m130524_201442_init extends Migration
             'sit' => $this->string()->notNull(),
             'owner' => $this->string()->notNull(),
             'adress' => $this->string()->notNull(),
+            'margin_on_sit'=>$this->smallInteger()->Null(),
+            'priceform_id'=>$this->integer()->notNull(),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->notNull(),
         ], $tableOptions);
 
+        $this->createTable('{{%priceform}}', [
+            'id' => $this->primaryKey(),
+            'name' => $this->string()->notNull(),
+            'seller'=>$this->smallInteger()->Null(),
+            'owner'=>$this->smallInteger()->Null(),
+            'fond'=>$this->smallInteger()->Null(),
+            'programmer'=>$this->smallInteger()->Null(),
+            'created_at' => $this->integer()->notNull(),
+            'updated_at' => $this->integer()->notNull(),
+        ], $tableOptions);
+
+        $this->createIndex('FK_sit_priceform', '{{%sit}}', 'priceform_id');
+        $this->addForeignKey(
+            'FK_sit_priceform', '{{%sit}}', 'priceform_id', '{{%priceform}}', 'id', 'SET NULL', 'CASCADE'
+        );
         $this->createIndex('FK_delevery_sit', '{{%delevery}}', 'sit_id');
         $this->addForeignKey(
             'FK_delevery_sit', '{{%delevery}}', 'sit_id', '{{%sit}}', 'id', 'SET NULL', 'CASCADE'
