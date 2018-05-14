@@ -20,6 +20,7 @@ class m130524_201442_init extends Migration
             'password_reset_token' => $this->string()->unique(),
             'email' => $this->string()->notNull()->unique(),
             'sit_id' =>$this->integer()->notNull(),
+            'role_id'=>$this->integer()->notNull(),
             'status' => $this->smallInteger()->notNull()->defaultValue(10),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->notNull(),
@@ -85,10 +86,22 @@ class m130524_201442_init extends Migration
             'updated_at' => $this->integer()->notNull(),
         ], $tableOptions);
 
+        $this->createTable('{{%role}}', [
+            'id' => $this->primaryKey(),
+            'name' => $this->string()->notNull(),
+
+        ], $tableOptions);
+
+        $this->createIndex('FK_user_role', '{{%user}}', 'role_id');
+        $this->addForeignKey(
+            'FK_user_role', '{{%user}}', 'role_id', '{{%role}}', 'id', 'SET NULL', 'CASCADE'
+        );
+
         $this->createIndex('FK_sit_priceform', '{{%sit}}', 'priceform_id');
         $this->addForeignKey(
             'FK_sit_priceform', '{{%sit}}', 'priceform_id', '{{%priceform}}', 'id', 'SET NULL', 'CASCADE'
         );
+
         $this->createIndex('FK_delevery_sit', '{{%delevery}}', 'sit_id');
         $this->addForeignKey(
             'FK_delevery_sit', '{{%delevery}}', 'sit_id', '{{%sit}}', 'id', 'SET NULL', 'CASCADE'
@@ -116,5 +129,7 @@ class m130524_201442_init extends Migration
         $this->dropTable('{{%articles}}');
         $this->dropTable('{{%sit}}');
         $this->dropTable('{{%delevery}}');
+        $this->dropTable('{{%priceform}}');
+        $this->dropTable('{{%role}}');
     }
 }
