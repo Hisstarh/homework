@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m130524_201445_create_base extends Migration
+class m130524_201446_create_base extends Migration
 {
     public function safeUp()
     {
@@ -82,32 +82,37 @@ class m130524_201445_create_base extends Migration
 
         $this->createIndex('FK_user_role', '{{%user}}', 'role_id');
         $this->addForeignKey(
-            'FK_user_role', '{{%user}}', 'role_id', '{{%role}}', 'id', 'CASCADE','CASCADE'
+            'FK_user_role', '{{%user}}', 'role_id', '{{%role}}', 'id', 'CASCADE','RESTRICT'
         );
 
         $this->createIndex('FK_sit_priceform', '{{%sit}}', 'priceform_id');
         $this->addForeignKey(
-            'FK_sit_priceform', '{{%sit}}', 'priceform_id', '{{%priceform}}', 'id', 'CASCADE', 'CASCADE'
+            'FK_sit_priceform', '{{%sit}}', 'priceform_id', '{{%priceform}}', 'id', 'CASCADE', 'RESTRICT'
         );
 
         $this->createIndex('FK_delevery_sit', '{{%delevery}}', 'sit_id');
         $this->addForeignKey(
-            'FK_delevery_sit', '{{%delevery}}', 'sit_id', '{{%sit}}', 'id', 'CASCADE', 'CASCADE'
+            'FK_delevery_sit', '{{%delevery}}', 'sit_id', '{{%sit}}', 'id', 'CASCADE', 'RESTRICT'
         );
 
-        $this->createIndex('FK_articles_sit', '{{%articles}}', 'sit_id');
+        $this->createIndex('FK_articles_delevery', '{{%articles}}', 'delevery_id');
         $this->addForeignKey(
-            'FK_articles_sit', '{{%articles}}', 'sit_id', '{{%sit}}', 'id','CASCADE',  'CASCADE'
+            'FK_articles_delevery', '{{%articles}}', 'delevery_id', '{{%sit}}', 'id','CASCADE',  'RESTRICT'
         );
 
         $this->createIndex('FK_articles_user', '{{%articles}}', 'update_user');
         $this->addForeignKey(
-            'FK_articles_user', '{{%articles}}', 'update_user', '{{%user}}', 'id',  'CASCADE','CASCADE'
+            'FK_articles_user', '{{%articles}}', 'update_user', '{{%user}}', 'id',  'CASCADE','RESTRICT'
+        );
+
+        $this->createIndex('FK_articles_user', '{{%articles}}', 'update_user');
+        $this->addForeignKey(
+            'FK_articles_user', '{{%articles}}', 'update_user', '{{%user}}', 'id',  'CASCADE','RESTRICT'
         );
 
         $this->createIndex('FK_user_sit', '{{%user}}', 'sit_id');
         $this->addForeignKey(
-            'FK_user_sit', '{{%user}}', 'sit_id', '{{%user}}', 'id', 'CASCADE', 'CASCADE'
+            'FK_user_sit', '{{%user}}', 'sit_id', '{{%user}}', 'id', 'CASCADE', 'RESTRICT'
         );
     }
 
@@ -138,6 +143,10 @@ class m130524_201445_create_base extends Migration
         );
         $this->dropForeignKey(
             'FK_articles_user',
+            '{{%articles}}'
+        );
+        $this->dropForeignKey(
+            'FK_articles_delevery',
             '{{%articles}}'
         );
         $this->dropForeignKey(
