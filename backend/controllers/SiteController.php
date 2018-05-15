@@ -1,6 +1,7 @@
 <?php
 namespace backend\controllers;
 
+use common\models\User;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -24,6 +25,11 @@ class SiteController extends Controller
                     [
                         'actions' => ['login', 'error'],
                         'allow' => true,
+                    ],
+                    [
+                        'actions' => ['usercontrol', 'usercontrol'],
+                        'allow' => true,
+                        'roles' => ['@'],
                     ],
                     [
                         'actions' => ['logout', 'index'],
@@ -63,6 +69,25 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
+    public function actionUsercontrol()
+    {
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $model = new LoginForm();
+        $modelUsers= new User();
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            return $this->goBack();
+        } else {
+            $model->password = '';
+
+            return $this->render('usercontrol', [
+                'model' => $modelUsers,
+            ]);
+        }
+
+    }
     /**
      * Login action.
      *

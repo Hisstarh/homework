@@ -23,7 +23,7 @@ class Articles extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'Articles';
+        return '{{%articles}}';
     }
 
     /**
