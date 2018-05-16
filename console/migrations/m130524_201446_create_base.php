@@ -112,7 +112,7 @@ class m130524_201446_create_base extends Migration
 
         $this->createIndex('FK_user_sit', '{{%user}}', 'sit_id');
         $this->addForeignKey(
-            'FK_user_sit', '{{%user}}', 'sit_id', '{{%user}}', 'id', 'CASCADE', 'RESTRICT'
+            'FK_user_sit', '{{%user}}', 'sit_id', '{{%sit}}', 'id', 'CASCADE', 'RESTRICT'
         );
     }
 
