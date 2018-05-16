@@ -17,6 +17,7 @@ use Yii;
  * @property int $created_at
  * @property int $updated_at
  *
+ * @property Articles[] $articles
  * @property Sit $sit
  */
 class Delevery extends \yii\db\ActiveRecord
@@ -65,17 +66,16 @@ class Delevery extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSit()
+    public function getArticles()
     {
-        return $this->hasOne(Sit::className(), ['id' => 'sit_id']);
+        return $this->hasMany(Articles::className(), ['delevery_id' => 'id']);
     }
 
     /**
-     * {@inheritdoc}
-     * @return DeleveryQuery the active query used by this AR class.
+     * @return \yii\db\ActiveQuery
      */
-    public static function find()
+    public function getSit()
     {
-        return new DeleveryQuery(get_called_class());
+        return $this->hasOne(Sit::className(), ['id' => 'sit_id']);
     }
 }

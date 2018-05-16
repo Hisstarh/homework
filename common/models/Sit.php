@@ -19,6 +19,7 @@ use Yii;
  * @property Articles[] $articles
  * @property Delevery[] $deleveries
  * @property Priceform $priceform
+ * @property User[] $users
  */
 class Sit extends \yii\db\ActiveRecord
 {
@@ -85,11 +86,10 @@ class Sit extends \yii\db\ActiveRecord
     }
 
     /**
-     * {@inheritdoc}
-     * @return SitQuery the active query used by this AR class.
+     * @return \yii\db\ActiveQuery
      */
-    public static function find()
+    public function getUsers()
     {
-        return new SitQuery(get_called_class());
+        return $this->hasMany(User::className(), ['sit_id' => 'id']);
     }
 }

@@ -64,13 +64,4 @@ class Priceform extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Sit::className(), ['priceform_id' => 'id']);
     }
-
-    /**
-     * {@inheritdoc}
-     * @return PriceformQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new PriceformQuery(get_called_class());
-    }
 }
