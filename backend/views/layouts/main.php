@@ -5,7 +5,13 @@
  * @var \yii\web\View $this
  */
 
+use backend\assets\AppAsset;
 use yii\helpers\Html;
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
+use yii\widgets\Breadcrumbs;
+use common\widgets\Alert;
+use yiister\gentelella\assets\Asset;
 
 $bundle = yiister\gentelella\assets\Asset::register($this);
 
