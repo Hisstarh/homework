@@ -26,7 +26,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
-    <?php ;$this->head() ?>
+    <?php $this->head() ?>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
 
@@ -42,7 +42,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
             <div class="left_col scroll-view">
 
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="/" class="site_title"><i class="fa fa-paw"></i> <span>Gentellela Alela!</span></a>
+                    <a href="/" class="site_title"><i class="fa fa-paw"></i> <span>BONECAR</span></a>
                 </div>
                 <div class="clearfix"></div>
 
@@ -53,7 +53,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                     </div>
                     <div class="profile_info">
                         <span>Welcome,</span>
-                        <h2> <?php Yii::$app->user->identity->username ?></h2>
+                        <h2> <?php echo Yii::$app->user->identity->username; ?></h2>
                     </div>
                 </div>
                 <!-- /menu prile quick info -->
@@ -170,7 +170,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                     <ul class="nav navbar-nav navbar-right">
                         <li class="">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img src="http://placehold.it/128x128" alt=""><?php Yii::$app->user->identity->username ?>
+                                <img src="http://placehold.it/128x128" alt=""><?php echo Yii::$app->user->identity->username ?>
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
