@@ -51,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'username',
                 'label'=>'Логин',
-                'pageSummary' => 'Page Total',
+                //'pageSummary' => 'Page Total',
                 'vAlign'=>'middle',
                 'headerOptions'=>['class'=>'kv-sticky-column'],
                 'contentOptions'=>['class'=>'kv-sticky-column'],
@@ -106,23 +106,24 @@ $this->params['breadcrumbs'][] = $this->title;
                 'options' => ['width' => '140']
             ],
 
-            ['class' => 'yii\grid\ActionColumn',
-                'template' => '{view} {update} {delete} {link}',
-                'buttons' => [
-                    'update' => function ($url,$model) {
-                        return Html::a(
-                            '<span class="glyphicon glyphicon-screenshot"></span>',
-                            $url);
-                    },
-                    'link' => function ($url,$model,$key) {
-                        return Html::a('Действие', $url);
-                    },
-                ],
-            ],
+//            ['class' => 'yii\grid\ActionColumn',
+//                'template' => '{view} {update} {delete} {link}',
+//                'buttons' => [
+//                    'update' => function ($url,$model) {
+//                        return Html::a(
+//                            '<span class="glyphicon glyphicon-screenshot"></span>',
+//                            $url);
+//                    },
+//                    'link' => function ($url,$model,$key) {
+//                        return Html::a('Действие', $url);
+//                    },
+//                ],
+//            ],
             [
                 'class' => 'kartik\grid\ActionColumn',
                 'dropdown' => true,
                 'vAlign'=>'middle',
+               // 'label'=>'Действия',
                 'urlCreator' => function($action, $model, $key, $index) { return '#'; },
                 'viewOptions'=>['title'=>$viewMsg, 'data-toggle'=>'tooltip'],
                 'updateOptions'=>['title'=>$updateMsg, 'data-toggle'=>'tooltip'],
@@ -142,10 +143,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ]
         ],
         'toolbar' =>  [
-            ['content'=>
-                Html::button('&lt;i class="glyphicon glyphicon-plus">&lt;/i>', ['type'=>'button', 'title'=>Yii::t('kvgrid', 'Add Book'), 'class'=>'btn btn-success', 'onclick'=>'alert("This will launch the book creation form.\n\nDisabled for this demo!");']) . ' '.
-                Html::a('&lt;i class="glyphicon glyphicon-repeat">&lt;/i>', ['grid-demo'], ['data-pjax'=>0, 'class' => 'btn btn-default', 'title'=>Yii::t('kvgrid', 'Reset Grid')])
-            ],
+//            ['content'=>
+//                Html::button('&lt;i class="glyphicon glyphicon-plus">&lt;/i>', ['type'=>'button', 'title'=>Yii::t('kvgrid', 'Add Book'), 'class'=>'btn btn-success', 'onclick'=>'alert("This will launch the book creation form.\n\nDisabled for this demo!");']) . ' '.
+//                Html::a('&lt;i class="glyphicon glyphicon-repeat">&lt;/i>', ['grid-demo'], ['data-pjax'=>0, 'class' => 'btn btn-default', 'title'=>Yii::t('kvgrid', 'Reset Grid')])
+//            ],
             '{export}',
             '{toggleData}'
         ],
@@ -157,7 +158,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'hover' => true,
         'floatHeader' => true,
         'floatHeaderOptions' => ['scrollingTop' => $scrollingTop],
-        'showPageSummary' => true,
+        'showPageSummary' => false,
         'panel' => [
             'type' => GridView::TYPE_PRIMARY
         ],
