@@ -64,12 +64,32 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 
                     <div class="menu_section">
-                        <h3>General</h3>
+                        <h3>Управление</h3>
                         <?=
                         \yiister\gentelella\widgets\Menu::widget(
                             [
                                 "items" => [
                                     ["label" => "Home", "url" => "/", "icon" => "home"],
+                                    ["label" => "Товары", "url" => ["articles/index"], "icon" => "star-o"],
+                                    ["label" => "Поставки", "url" => ["delevery/index"], "icon" => "road"],
+                                    [
+                                        "label" => "Управление пользователями",
+                                        "icon" => "user",
+                                        "url" => "#",
+                                        "items" => [
+                                            ["label" => "Пользователи", "url" => ["users/index"]],
+                                            ["label" => "Роли", "url" => ["role/index"]],
+                                        ],
+                                    ],
+                                    [
+                                        "label" => "Управление Магазинами и формулами расчета",
+                                        "icon" => "inbox",
+                                        "url" => "#",
+                                        "items" => [
+                                            ["label" => "Магазины", "url" => ["sit/index"]],
+                                            ["label" => "Формулы", "url" => ["priceform/index"]],
+                                        ],
+                                    ],
                                     ["label" => "Layout", "url" => ["site/layout"], "icon" => "files-o"],
                                     ["label" => "Error page", "url" => ["site/error-page"], "icon" => "close"],
                                     [

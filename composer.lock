@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "9b3ec78720fd0445930e4c5575ea48eb",
+    "content-hash": "f111a901816c309ea3665c1061984a87",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -22,6 +22,25 @@
             },
             "require": {
                 "bower-asset/jquery": ">=1.9.1,<4.0"
+            },
+            "type": "bower-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "bower-asset/bower-jquery-sparkline",
+            "version": "2.1.3",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:nicolabortignon/bower-jquery-sparkline.git",
+                "reference": "ece667486f45045a8aebccc6de247d0a09a99183"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nicolabortignon/bower-jquery-sparkline/zipball/ece667486f45045a8aebccc6de247d0a09a99183",
+                "reference": "ece667486f45045a8aebccc6de247d0a09a99183",
+                "shasum": null
             },
             "type": "bower-asset",
             "license": [
@@ -71,22 +90,41 @@
         },
         {
             "name": "bower-asset/jquery",
-            "version": "3.2.1",
+            "version": "1.12.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jquery/jquery-dist.git",
-                "reference": "77d2a51d0520d2ee44173afdf4e40a9201f5964e"
+                "reference": "5e89585e0121e72ff47de177c5ef604f3089a53d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/77d2a51d0520d2ee44173afdf4e40a9201f5964e",
-                "reference": "77d2a51d0520d2ee44173afdf4e40a9201f5964e",
+                "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/5e89585e0121e72ff47de177c5ef604f3089a53d",
+                "reference": "5e89585e0121e72ff47de177c5ef604f3089a53d",
                 "shasum": null
             },
             "type": "bower-asset",
             "license": [
                 "MIT"
             ]
+        },
+        {
+            "name": "bower-asset/jquery.tagsinput",
+            "version": "v1.3.6",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:xoxco/jQuery-Tags-Input.git",
+                "reference": "ae31b175fbfd0a0476822182ef52e76c2629e9c3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/xoxco/jQuery-Tags-Input/zipball/ae31b175fbfd0a0476822182ef52e76c2629e9c3",
+                "reference": "ae31b175fbfd0a0476822182ef52e76c2629e9c3",
+                "shasum": null
+            },
+            "require": {
+                "bower-asset/jquery": "dev-1.x|1.x"
+            },
+            "type": "bower-asset"
         },
         {
             "name": "bower-asset/punycode",
@@ -185,6 +223,226 @@
                 "markdown-extra"
             ],
             "time": "2017-07-16T21:13:23+00:00"
+        },
+        {
+            "name": "components/jquery",
+            "version": "3.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/components/jquery.git",
+                "reference": "459648cda77875519c5da3ae1dd0ed5d170aa649"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/components/jquery/zipball/459648cda77875519c5da3ae1dd0ed5d170aa649",
+                "reference": "459648cda77875519c5da3ae1dd0ed5d170aa649",
+                "shasum": ""
+            },
+            "type": "component",
+            "extra": {
+                "component": {
+                    "scripts": [
+                        "jquery.js"
+                    ],
+                    "files": [
+                        "jquery.min.js",
+                        "jquery.min.map",
+                        "jquery.slim.js",
+                        "jquery.slim.min.js",
+                        "jquery.slim.min.map"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "JS Foundation and other contributors"
+                }
+            ],
+            "description": "jQuery JavaScript Library",
+            "homepage": "http://jquery.com",
+            "time": "2018-03-04T13:23:48+00:00"
+        },
+        {
+            "name": "contao-community-alliance/composer-client",
+            "version": "0.16.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/contao-community-alliance/composer-client.git",
+                "reference": "d52f0f042a9176a22b8a654da3415e54ce3c89d3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/contao-community-alliance/composer-client/zipball/d52f0f042a9176a22b8a654da3415e54ce3c89d3",
+                "reference": "d52f0f042a9176a22b8a654da3415e54ce3c89d3",
+                "shasum": ""
+            },
+            "require": {
+                "contao-community-alliance/composer-plugin": "^2.3.8",
+                "contao/core": ">=3.2,<4-dev",
+                "php": ">=5.3.4"
+            },
+            "replace": {
+                "contao-community-alliance/composer": "self.version"
+            },
+            "require-dev": {
+                "phpcq/all-tasks": "~1.1"
+            },
+            "type": "contao-module",
+            "extra": {
+                "contao": {
+                    "sources": {
+                        "src/system/modules/!composer": "system/modules/!composer"
+                    },
+                    "transifex": {
+                        "project": "composer",
+                        "prefix": "client-",
+                        "languages_cto": "src/system/modules/!composer/languages",
+                        "languages_tx": ".tx"
+                    }
+                },
+                "branch-alias": {
+                    "dev-master": "0.16.x-dev",
+                    "dev-develop": "0.17.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Tristan Lins",
+                    "email": "tristan.lins@bit3.de",
+                    "homepage": "http://bit3.de",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Christian Schiffler",
+                    "email": "c.schiffler@cyberspectrum.de",
+                    "homepage": "http://www.cyberspectrum.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The contao composer client.",
+            "keywords": [
+                "client",
+                "composer",
+                "contao"
+            ],
+            "time": "2017-03-13T13:20:40+00:00"
+        },
+        {
+            "name": "contao-community-alliance/composer-plugin",
+            "version": "2.4.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/contao-community-alliance/composer-plugin.git",
+                "reference": "238935db1452e7b4b640b052ca1f602cd82053c4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/contao-community-alliance/composer-plugin/zipball/238935db1452e7b4b640b052ca1f602cd82053c4",
+                "reference": "238935db1452e7b4b640b052ca1f602cd82053c4",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0",
+                "php": ">=5.3.2"
+            },
+            "conflict": {
+                "contao-community-alliance/composer": "<0.9-dev",
+                "contao/core": "3.0.*"
+            },
+            "replace": {
+                "contao-community-alliance/composer-installer": "1.7.1"
+            },
+            "require-dev": {
+                "composer/composer": "~1.0@dev",
+                "contao/core": ">=2.11,<4.0",
+                "phpcq/all-tasks": "~1.1"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "ContaoCommunityAlliance\\Composer\\Plugin\\Plugin"
+            },
+            "autoload": {
+                "psr-0": {
+                    "ContaoCommunityAlliance\\Composer\\Plugin\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0+"
+            ],
+            "description": "Composer plugin that provide contao integration and installer.",
+            "homepage": "http://c-c-a.org/",
+            "time": "2016-07-04T10:10:10+00:00"
+        },
+        {
+            "name": "contao/core",
+            "version": "3.2.21",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/contao-community-alliance/composerized-contao-core.git",
+                "reference": "9597b78015ee59b5577b618f1c682aa44ea36680"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/contao-community-alliance/composerized-contao-core/zipball/9597b78015ee59b5577b618f1c682aa44ea36680",
+                "reference": "9597b78015ee59b5577b618f1c682aa44ea36680",
+                "shasum": ""
+            },
+            "require": {
+                "contao-community-alliance/composer-plugin": "~2.0",
+                "php": ">=5.3.2"
+            },
+            "replace": {
+                "contao/calendar-bundle": "self.version",
+                "contao/comments-bundle": "self.version",
+                "contao/core-bundle": "self.version",
+                "contao/faq-bundle": "self.version",
+                "contao/listing-bundle": "self.version",
+                "contao/news-bundle": "self.version",
+                "contao/newsletter-bundle": "self.version"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "system/modules/calendar",
+                    "system/modules/comments",
+                    "system/modules/core",
+                    "system/modules/devtools",
+                    "system/modules/faq",
+                    "system/modules/listing",
+                    "system/modules/news",
+                    "system/modules/newsletter",
+                    "system/modules/repository",
+                    "system/helper/interface.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Leo Feyer",
+                    "email": "github@contao.org",
+                    "homepage": "https://contao.org",
+                    "role": "Project leader"
+                }
+            ],
+            "description": "Contao Open Source CMS",
+            "homepage": "https://contao.org",
+            "keywords": [
+                "contao",
+                "core"
+            ],
+            "time": "2016-02-18T19:33:22+00:00"
         },
         {
             "name": "doctrine/lexer",
@@ -345,6 +603,59 @@
             "time": "2018-02-23T01:58:20+00:00"
         },
         {
+            "name": "faryshta/yii2-jquery-tagsinput",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Faryshta/yii2-jquery-tagsinput.git",
+                "reference": "8b7a1914ad44565ba7f6df0c64abc8031be6687e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Faryshta/yii2-jquery-tagsinput/zipball/8b7a1914ad44565ba7f6df0c64abc8031be6687e",
+                "reference": "8b7a1914ad44565ba7f6df0c64abc8031be6687e",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery.tagsinput": "*",
+                "yiisoft/yii2": "~2.0.0"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "asset-installer-paths": {
+                    "npm-asset-library": "vendor/npm",
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "faryshta\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Angel (Faryshta) Guevara",
+                    "email": "angeldelcaos@gmail.com",
+                    "homepage": "https://github.com/Faryshta",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Yii2 widget for Jquery TagsInput plugin",
+            "homepage": "https://github.com/Faryshta/yii2-jquery-tagsinput",
+            "keywords": [
+                "jquery",
+                "tags",
+                "tagsinput",
+                "yii",
+                "yii2"
+            ],
+            "time": "2017-01-13T09:48:20+00:00"
+        },
+        {
             "name": "fortawesome/font-awesome",
             "version": "v4.7.0",
             "source": {
@@ -391,6 +702,317 @@
                 "icon"
             ],
             "time": "2016-10-24T15:52:54+00:00"
+        },
+        {
+            "name": "kartik-v/bootstrap-fileinput",
+            "version": "v4.4.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/bootstrap-fileinput.git",
+                "reference": "7a2191d2b7ae65f5ca4ddb090a69d65805eb7edf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/7a2191d2b7ae65f5ca4ddb090a69d65805eb7edf",
+                "reference": "7a2191d2b7ae65f5ca4ddb090a69d65805eb7edf",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\plugins\\fileinput\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "An enhanced HTML 5 file input for Bootstrap 3.x with features for file preview for many file types, multiple selection, ajax uploads, and more.",
+            "homepage": "https://github.com/kartik-v/bootstrap-fileinput",
+            "keywords": [
+                "ajax",
+                "bootstrap",
+                "delete",
+                "file",
+                "image",
+                "input",
+                "jquery",
+                "multiple",
+                "preview",
+                "progress",
+                "upload"
+            ],
+            "time": "2018-04-11T10:34:10+00:00"
+        },
+        {
+            "name": "kartik-v/yii2-date-range",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-date-range.git",
+                "reference": "ed12260339f4699c363360465a22a46c714eb6be"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-date-range/zipball/ed12260339f4699c363360465a22a46c714eb6be",
+                "reference": "ed12260339f4699c363360465a22a46c714eb6be",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/yii2-krajee-base": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.6.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\daterange\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "An advanced Yii 2 date range picker input for based on bootstrap-daterangepicker plugin.",
+            "homepage": "https://github.com/kartik-v/yii2-date-range",
+            "keywords": [
+                "bootstrap",
+                "bootstrap 3",
+                "date",
+                "date-range",
+                "extension",
+                "range",
+                "time",
+                "widget",
+                "yii2"
+            ],
+            "time": "2018-03-15T08:22:53+00:00"
+        },
+        {
+            "name": "kartik-v/yii2-krajee-base",
+            "version": "v1.8.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-krajee-base.git",
+                "reference": "0cafe6376780cedcd00f52c9d82b172d5851f6b0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-krajee-base/zipball/0cafe6376780cedcd00f52c9d82b172d5851f6b0",
+                "reference": "0cafe6376780cedcd00f52c9d82b172d5851f6b0",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2-bootstrap": "@dev"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.8.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\base\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "Base library and foundation components for all Yii2 Krajee extensions.",
+            "homepage": "https://github.com/kartik-v/yii2-krajee-base",
+            "keywords": [
+                "base",
+                "extension",
+                "foundation",
+                "krajee",
+                "widget",
+                "yii2"
+            ],
+            "time": "2017-09-29T06:18:14+00:00"
+        },
+        {
+            "name": "kartik-v/yii2-widget-fileinput",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-widget-fileinput.git",
+                "reference": "c5495641c8a86690713eb562e544bf5eaaf727cb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-fileinput/zipball/c5495641c8a86690713eb562e544bf5eaaf727cb",
+                "reference": "c5495641c8a86690713eb562e544bf5eaaf727cb",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/bootstrap-fileinput": "~4.4",
+                "kartik-v/yii2-krajee-base": "~1.7"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\file\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "An enhanced FileInput widget for Bootstrap 3.x with file preview, multiple selection, and more features (sub repo split from yii2-widgets)",
+            "homepage": "https://github.com/kartik-v/yii2-widget-fileinput",
+            "keywords": [
+                "extension",
+                "file",
+                "form",
+                "input",
+                "jquery",
+                "plugin",
+                "upload",
+                "widget",
+                "yii2"
+            ],
+            "time": "2017-12-06T12:34:31+00:00"
+        },
+        {
+            "name": "kartik-v/yii2-widget-switchinput",
+            "version": "v1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-widget-switchinput.git",
+                "reference": "7d8ee999d79bcdc1601da5cd59439ac7eb1f5ea6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-switchinput/zipball/7d8ee999d79bcdc1601da5cd59439ac7eb1f5ea6",
+                "reference": "7d8ee999d79bcdc1601da5cd59439ac7eb1f5ea6",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/yii2-krajee-base": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\switchinput\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD 3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "A Yii2 wrapper widget for the Bootstrap Switch plugin to use checkboxes & radios as toggle switchinputes (sub repo split from yii2-widgets)",
+            "homepage": "https://github.com/kartik-v/yii2-widget-switchinput",
+            "keywords": [
+                "bootstrap",
+                "extension",
+                "form",
+                "input",
+                "jquery",
+                "plugin",
+                "switchinput",
+                "toggle",
+                "widget",
+                "yii2"
+            ],
+            "time": "2016-01-10T16:47:35+00:00"
+        },
+        {
+            "name": "machour/yii2-sparkline",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/machour/yii2-sparkline.git",
+                "reference": "a6e7c0fd04668f21c8e2f1609b5f71f469668d01"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/machour/yii2-sparkline/zipball/a6e7c0fd04668f21c8e2f1609b5f71f469668d01",
+                "reference": "a6e7c0fd04668f21c8e2f1609b5f71f469668d01",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/bower-jquery-sparkline": "^2.1@dev",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "asset-installer-paths": {
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "machour\\sparkline\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mehdi Achour",
+                    "email": "machour@gmail.com"
+                }
+            ],
+            "description": "Yii2 jQuery Sparkline widget",
+            "keywords": [
+                "charts",
+                "extension",
+                "sparkline",
+                "yii2"
+            ],
+            "time": "2015-11-15T20:01:59+00:00"
         },
         {
             "name": "rmrevin/yii2-fontawesome",
@@ -1035,16 +1657,16 @@
         },
         {
             "name": "codeception/stub",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeception/Stub.git",
-                "reference": "95fb7a36b81890dd2e5163e7ab31310df6f1bb99"
+                "reference": "36981f59f7a29180aa8fecd0a4dc6250a2cc5fb1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeception/Stub/zipball/95fb7a36b81890dd2e5163e7ab31310df6f1bb99",
-                "reference": "95fb7a36b81890dd2e5163e7ab31310df6f1bb99",
+                "url": "https://api.github.com/repos/Codeception/Stub/zipball/36981f59f7a29180aa8fecd0a4dc6250a2cc5fb1",
+                "reference": "36981f59f7a29180aa8fecd0a4dc6250a2cc5fb1",
                 "shasum": ""
             },
             "require": {
@@ -1064,7 +1686,7 @@
                 "MIT"
             ],
             "description": "Flexible Stub wrapper for PHPUnit's Mock Builder",
-            "time": "2018-02-18T13:56:56+00:00"
+            "time": "2018-05-16T17:03:58+00:00"
         },
         {
             "name": "codeception/verify",
@@ -3372,7 +3994,10 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "kartik-v/yii2-date-range": 20,
+        "kartik-v/yii2-widget-fileinput": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

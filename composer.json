@@ -1,7 +1,12 @@
 {
     "name": "yiisoft/yii2-app-advanced",
     "description": "Yii 2 Advanced Project Template",
-    "keywords": ["yii2", "framework", "advanced", "project template"],
+    "keywords": [
+        "yii2",
+        "framework",
+        "advanced",
+        "project template"
+    ],
     "homepage": "http://www.yiiframework.com/",
     "type": "project",
     "license": "BSD-3-Clause",
@@ -18,7 +23,14 @@
         "yiisoft/yii2": "~2.0.6",
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
-        "yiister/yii2-gentelella": "~1.0"
+        "yiister/yii2-gentelella": "~1.0",
+        "components/jquery": "^3.3",
+        "machour/yii2-sparkline": "^1.0",
+        "faryshta/yii2-jquery-tagsinput": "*",
+        "contao-community-alliance/composer-client": "~0.14",
+        "kartik-v/yii2-date-range": "dev-master",
+        "kartik-v/yii2-widget-fileinput": "@dev",
+        "kartik-v/yii2-widget-switchinput": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
@@ -31,9 +43,18 @@
         "process-timeout": 1800,
         "fxp-asset": {
             "enabled": false
-        }
+        },
+        "component-dir": "../assets/components"
     },
     "repositories": [
+        {
+            "type": "composer",
+            "url": "https://legacy-packages-via.contao-community-alliance.org/"
+        },
+        {
+            "type": "artifact",
+            "url": "packages"
+        },
         {
             "type": "composer",
             "url": "https://asset-packagist.org"
