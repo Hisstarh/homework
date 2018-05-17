@@ -26,7 +26,7 @@ class Articles extends \yii\db\ActiveRecord
         return '{{%articles}}';
     }
 
-    /**
+        /**
      * {@inheritdoc}
      */
     public function rules()
@@ -41,6 +41,8 @@ class Articles extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+
+
     public function attributeLabels()
     {
         return [

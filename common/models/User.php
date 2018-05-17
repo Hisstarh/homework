@@ -28,6 +28,11 @@ class User extends ActiveRecord implements IdentityInterface
     const ROLE_DEFAULT = 6;
     const SITE_DEFAULT = 1;
 
+// связка с таблицей sit
+    public function getSit()
+    {
+        return $this->hasMany(Sit::className(), ['sit_id' => 'id']);
+    }
     /**
      * {@inheritdoc}
      */
