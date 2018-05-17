@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;//yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\UsersSearch */
@@ -67,7 +67,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute'=>'status',
                 'label'=>'Статус',
                 'format'=>'raw',
-                //'contentOptions' =>['class' => 'table_class','style'=>'display:block;'],
                 'filter' => [
                     0 => 'Удален',
                     10 => 'Активен',
@@ -83,7 +82,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     );
                 },
             ],
-            'status',
             [
                 'attribute' => 'created_at',
                 'label'=>'Дата создания',
