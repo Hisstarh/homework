@@ -53,20 +53,48 @@ $this->params['breadcrumbs'][] = $this->title;
            // 'password_reset_token',
             'email:email:Почта',
 
-            'sit.sit',
-            'role_id',
+            [
+                'attribute' => 'sit.sit',
+                'label'=>'Магазин'
+
+            ],
+            [
+                'attribute' => 'role.name',
+                'label'=>'Роль'
+
+            ],
+            [
+                'attribute'=>'status',
+                'label'=>'Статус',
+                'format'=>'raw',
+                //'contentOptions' =>['class' => 'table_class','style'=>'display:block;'],
+                'filter' => [
+                    0 => 'Удален',
+                    10 => 'Активен',
+                ],
+                'value' => function ($model, $key, $index, $column) {
+                    $active = $model->{$column->attribute} === 10;
+                    return \yii\helpers\Html::tag(
+                        'span',
+                        $active ? 'Активен' : 'Удален',
+                        [
+                            'class' => 'label label-' . ($active ? 'success' : 'danger'),
+                        ]
+                    );
+                },
+            ],
             'status',
             [
                 'attribute' => 'created_at',
                 'label'=>'Дата создания',
                 'format' =>  ['date', 'dd.MM.Y HH:mm:ss'],
-                'options' => ['width' => '200']
+                'options' => ['width' => '140']
             ],
             [
                 'attribute' => 'updated_at',
                 'label'=>'Дата изменения',
                 'format' =>  ['date', 'dd.MM.Y HH:mm:ss'],
-                'options' => ['width' => '200']
+                'options' => ['width' => '140']
             ],
 
             ['class' => 'yii\grid\ActionColumn',

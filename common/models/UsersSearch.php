@@ -42,7 +42,7 @@ class UsersSearch extends Users
     public function search($params)
     {
         // подвязываем таблицу ситов
-        $query = Users::find()->with('sit');
+        $query = Users::find()->with('sit','role');
 
         // add conditions that should always apply here
 
