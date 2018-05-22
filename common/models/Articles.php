@@ -33,8 +33,14 @@ class Articles extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'model', ], 'required'],
-            [['status', 'created_at', 'updated_at'], 'integer'],
-            [['name', 'model'], 'string', 'max' => 255],
+            [['code'], 'integer', 'max' => 13],
+            [['code'], 'unique'],
+            [['code','left_right','front_rear','top_button','status', 'created_at', 'updated_at'], 'integer'],
+            [['sell_price','purchase_price','margin'], 'double'],
+            [['name', 'place', 'mark', 'body', 'drive', 'model', 'description', 'code_manufacturer', 'optics'], 'string', 'max' => 255],
+            [['delevery_id'], 'exist', 'skipOnError' => true, 'targetClass' => Delevery::className(), 'targetAttribute' => ['delevery_id' => 'id']],
+            [['sit_id'], 'exist', 'skipOnError' => true, 'targetClass' => Sit::className(), 'targetAttribute' => ['sit_id' => 'id']],
+            [['update_user'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['update_user' => 'id']],
         ];
     }
 
@@ -47,9 +53,24 @@ class Articles extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
+            'code' => Yii::t('app', 'Code'),
+            'left_right' => Yii::t('app', 'Left_Right'),
+            'front_rear' => Yii::t('app', 'Front_Rear'),
+            'top_button' => Yii::t('app', 'Top_Button'),
+            'sell_price' => Yii::t('app', 'Sell_price'),
+            'purchase_price' => Yii::t('app', 'Purchase_price'),
+            'place' => Yii::t('app', 'Place'),
+            'mark' => Yii::t('app', 'Mark'),
+            'body' => Yii::t('app', 'Body'),
+            'description' => Yii::t('app', 'Description'),
+            'code_manufacturer' => Yii::t('app', 'Code_manufacturer'),
+            'optics' => Yii::t('app', 'Optics'),
             'name' => Yii::t('app', 'Name'),
             'model' => Yii::t('app', 'Model'),
             'status' => Yii::t('app', 'Status'),
+            'delevery_id' => Yii::t('app', 'Delevery_id'),
+            'sit_id' => Yii::t('app', 'Sit_id'),
+            'update_user' => Yii::t('app', 'Update_user'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];

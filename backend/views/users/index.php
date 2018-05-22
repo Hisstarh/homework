@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use kartik\grid\GridView;//yii\grid\GridView;
+use kartik\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\UsersSearch */
@@ -135,9 +135,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'beforeHeader'=>[
             [
                 'columns'=>[
-                    ['content'=>'Header Before 1', 'options'=>['colspan'=>4, 'class'=>'text-center warning']],
-                    ['content'=>'Header Before 2', 'options'=>['colspan'=>4, 'class'=>'text-center warning']],
-                    ['content'=>'Header Before 3', 'options'=>['colspan'=>3, 'class'=>'text-center warning']],
+                    ['content'=>'Информация о пользователе', 'options'=>['colspan'=>5, 'class'=>'text-center warning']],
+                    ['content'=>'Техническая информация', 'options'=>['colspan'=>3, 'class'=>'text-center warning']],
+                    ['content'=>'Управление', 'options'=>['colspan'=>3, 'class'=>'text-center warning']],
                 ],
                 'options'=>['class'=>'skip-export'] // remove this row from export
             ]
