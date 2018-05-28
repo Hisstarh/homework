@@ -12,6 +12,12 @@ use common\models\Articles;
  * @property mixed delevery_id
  * @property mixed update_user
  * @property mixed sit_id
+ * @property mixed left
+ * @property mixed right
+ * @property mixed front
+ * @property mixed rear
+ * @property mixed top
+ * @property mixed bottom
  */
 class ArticlesSearch extends Articles
 {
@@ -21,7 +27,7 @@ class ArticlesSearch extends Articles
     public function rules()
     {
         return [
-            [['id', 'status', 'created_at', 'updated_at','update_user','sit_id','delevery_id','top_bottom','front_rear','left_right'], 'integer'],
+            [['id', 'status', 'created_at', 'updated_at','update_user','sit_id','delevery_id','left','right','front','rear','top','bottom'], 'integer'],
             [['name', 'place', 'mark', 'body', 'drive', 'model', 'description', 'code_manufacturer', 'optics'], 'safe'],
         ];
     }
@@ -65,6 +71,12 @@ class ArticlesSearch extends Articles
             'id' => $this->id,
             'status' => $this->status,
             'sit_id' => $this->sit_id,
+            'left'=> $this->left,
+            'right'=> $this->right,
+            'front'=> $this->front,
+            'rear'=> $this->rear,
+            'top'=> $this->top,
+            'bottom'=> $this->bottom,
             'delevery_id' => $this->delevery_id,
             'update_user' => $this->update_user,
             'created_at' => $this->created_at,

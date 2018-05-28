@@ -48,6 +48,10 @@ $this->params['breadcrumbs'][] = $this->title;
 //            ],
             // 'id',
             [
+                'class' => 'kartik\grid\CheckboxColumn',
+                'headerOptions' => ['class' => 'kartik-sheet-style']
+            ],
+            [
                // 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'name',
                 'label'=>'Название',
@@ -111,13 +115,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'description:text:Описание',
 
             [
-                'attribute'=>'left_right',
-                'label'=>'Лево\Право',
+                'attribute'=>'left',
+                'label'=>'Левая сторона',
                 'format'=>'raw',
                 'filter' => [
-                    0 => 'не указано',
-                    1 => 'Левое',
-                    2 => 'Правое',
+                    false => 'не указано',
+                    true => 'Левая'
                 ],
                 'value' => function ($model, $key, $index, $column) {
 
@@ -125,7 +128,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     if ($active) {
                         return \yii\helpers\Html::tag(
                             'span',
-                            ($active==1) ? 'Левое' : 'Правое',
+                            'Левая',
                             [
                                 'class' => 'label label-' . 'success',
                             ]
@@ -143,13 +146,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
             [
-                'attribute'=>'front_rear',
-                'label'=>'Перед\Зад',
+                'attribute'=>'right',
+                'label'=>'Правая сторона',
                 'format'=>'raw',
                 'filter' => [
-                    0 => 'не указано',
-                    1 => 'Перед',
-                    2 => 'Зад',
+                    false => 'не указано',
+                    true => 'Правая'
                 ],
                 'value' => function ($model, $key, $index, $column) {
 
@@ -157,7 +159,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     if ($active) {
                         return \yii\helpers\Html::tag(
                             'span',
-                            ($active==1) ? 'Перед' : 'Зад',
+                            'Правая',
                             [
                                 'class' => 'label label-' . 'success',
                             ]
@@ -174,38 +176,70 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 },
             ],
-            [
-                'attribute'=>'top_bottom',
-                'label'=>'Верх\Низ',
-                'format'=>'raw',
-                'filter' => [
-                    0 => 'не указано',
-                    1 => 'Верх',
-                    2 => 'Низ',
-                ],
-                'value' => function ($model, $key, $index, $column) {
-
-                    $active = $model->{$column->attribute} !== 0;
-                    if ($active) {
-                        return \yii\helpers\Html::tag(
-                            'span',
-                            ($active==1) ? 'Верх' : 'Низ',
-                            [
-                                'class' => 'label label-' . 'success',
-                            ]
-                        );
-                    } else {
-                        return \yii\helpers\Html::tag(
-                            'span',
-                            'не указано',
-                            [
-                                'class' => 'label label-' . 'danger',
-                            ]
-                        );
-                    }
-
-                },
-            ],
+//            [
+//                'attribute'=>'front_rear',
+//                'label'=>'Перед\Зад',
+//                'format'=>'raw',
+//                'filter' => [
+//                    0 => 'не указано',
+//                    1 => 'Перед',
+//                    2 => 'Зад',
+//                ],
+//                'value' => function ($model, $key, $index, $column) {
+//
+//                    $active = $model->{$column->attribute} !== 0;
+//                    if ($active) {
+//                        return \yii\helpers\Html::tag(
+//                            'span',
+//                            ($active==1) ? 'Перед' : 'Зад',
+//                            [
+//                                'class' => 'label label-' . 'success',
+//                            ]
+//                        );
+//                    } else {
+//                        return \yii\helpers\Html::tag(
+//                            'span',
+//                            'не указано',
+//                            [
+//                                'class' => 'label label-' . 'danger',
+//                            ]
+//                        );
+//                    }
+//
+//                },
+//            ],
+//            [
+//                'attribute'=>'top_bottom',
+//                'label'=>'Верх\Низ',
+//                'format'=>'raw',
+//                'filter' => [
+//                    0 => 'не указано',
+//                    1 => 'Верх',
+//                    2 => 'Низ',
+//                ],
+//                'value' => function ($model, $key, $index, $column) {
+//
+//                    $active = $model->{$column->attribute} !== 0;
+//                    if ($active) {
+//                        return \yii\helpers\Html::tag(
+//                            'span',
+//                            ($active==1) ? 'Верх' : 'Низ',
+//                            [
+//                                'class' => 'label label-' . 'success',
+//                            ]
+//                        );
+//                    } else {
+//                        return \yii\helpers\Html::tag(
+//                            'span',
+//                            'не указано',
+//                            [
+//                                'class' => 'label label-' . 'danger',
+//                            ]
+//                        );
+//                    }
+//
+//                },
+//            ],
             'code_manufacturer:text:Код манифактуры',
             'optics:text:Оптика',
             [
@@ -290,17 +324,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'kartik\grid\ActionColumn',
                 'dropdown' => true,
                 'vAlign'=>'middle',
-                // 'label'=>'Действия',
+                'header'=>'Действия',
                 'urlCreator' => function($action, $model, $key, $index) { return '#'; },
                 'viewOptions'=>['title'=>$viewMsg, 'data-toggle'=>'tooltip'],
                 'updateOptions'=>['title'=>$updateMsg, 'data-toggle'=>'tooltip'],
                 'deleteOptions'=>['title'=>$deleteMsg, 'data-toggle'=>'tooltip'],
-                //'headerOptions' => ['class' => 'kartik-sheet-style'],
+                'headerOptions' => ['class' => 'kartik-sheet-style'],
             ],
-            [
-                'class' => 'kartik\grid\CheckboxColumn',
-                'headerOptions' => ['class' => 'kartik-sheet-style']
-            ]
+
         ],
         'containerOptions' => ['style'=>'overflow: auto'], // only set when $responsive = false
         'beforeHeader'=>[
@@ -309,7 +340,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ['content'=>'Товар', 'options'=>['colspan'=>6, 'class'=>'text-center warning']],
                     ['content'=>'Дополнительная информация', 'options'=>['colspan'=>10, 'class'=>'text-center warning']],
                     ['content'=>'Тарифы', 'options'=>['colspan'=>4, 'class'=>'text-center warning']],
-                    ['content'=>'Техническая информация', 'options'=>['colspan'=>3, 'class'=>'text-center warning']],
+                    ['content'=>'Техническая информация', 'options'=>['colspan'=>4, 'class'=>'text-center warning']],
                     [
                         'content'=>'Управление',
                         'options'=>['colspan'=>2, 'class'=>'text-center warning']
@@ -333,7 +364,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'condensed' => false,
         'responsive' => true,
         'hover' => true,
-        'floatHeader' => true,
+       // 'floatHeader' => true,
        // 'floatHeaderOptions' => ['scrollingTop' => $scrollingTop],
         'showPageSummary' => false,
         'panel' => [

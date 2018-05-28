@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m130524_201446_create_base extends Migration
+class m130524_201447_update extends Migration
 {
     public function safeUp()
     {
@@ -27,9 +27,12 @@ class m130524_201446_create_base extends Migration
             'drive' => $this->string()->notNull(),
             'model' => $this->string()->notNull(),
             'description' => $this->string()->defaultValue(''),
-            'left_right' => $this->integer()->defaultValue(0),
-            'front_rear' => $this->integer()->defaultValue(0),
-            'top_bottom' => $this->integer()->defaultValue(0),
+            'left' => $this->boolean()->defaultValue(false),
+            'front' => $this->boolean()->defaultValue(false),
+            'top' => $this->boolean()->defaultValue(false),
+            'right' => $this->boolean()->defaultValue(false),
+            'rear' => $this->boolean()->defaultValue(false),
+            'bottom' => $this->boolean()->defaultValue(false),
             'code_manufacturer' => $this->string()->notNull(),
             'optics' => $this->string()->notNull(),
             'delevery_id' => $this->integer()->notNull()->defaultValue(1),
@@ -118,12 +121,7 @@ class m130524_201446_create_base extends Migration
 
     public function safeDown()
     {
-        $this->dropTable('{{%user}}');
-        $this->dropTable('{{%articles}}');
-        $this->dropTable('{{%sit}}');
-        $this->dropTable('{{%delevery}}');
-        $this->dropTable('{{%priceform}}');
-        $this->dropTable('{{%role}}');
+
 
         $this->dropForeignKey(
             'FK_user_role',
@@ -153,5 +151,11 @@ class m130524_201446_create_base extends Migration
             'FK_user_sit',
             '{{%user}}'
         );
+        $this->dropTable('{{%user}}');
+        $this->dropTable('{{%articles}}');
+        $this->dropTable('{{%sit}}');
+        $this->dropTable('{{%delevery}}');
+        $this->dropTable('{{%priceform}}');
+        $this->dropTable('{{%role}}');
     }
 }

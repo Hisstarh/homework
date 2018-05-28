@@ -90,6 +90,15 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                             ["label" => "Формулы", "url" => ["priceform/index"]],
                                         ],
                                     ],
+                                    [
+                                        "label" => "Управление БАЗОЙ SQL",
+                                        "icon" => "database",
+                                        "url" => "#",
+                                        "items" => [
+                                            ["label" => "dump", "url" => ["db/index"]],
+
+                                        ],
+                                    ],
                                     ["label" => "Layout", "url" => ["site/layout"], "icon" => "files-o"],
                                     ["label" => "Error page", "url" => ["site/error-page"], "icon" => "close"],
                                     [
