@@ -48,14 +48,14 @@ $this->params['breadcrumbs'][] = $this->title;
 //            ],
             // 'id',
             [
-                'class' => 'kartik\grid\EditableColumn',
+               // 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'name',
                 'label'=>'Название',
                 //'pageSummary' => 'Page Total',
                 'vAlign'=>'middle',
                 'headerOptions'=>['class'=>'kv-sticky-column'],
                 'contentOptions'=>['class'=>'kv-sticky-column'],
-                'editableOptions'=>['header'=>'Name', 'size'=>'md']
+                //'editableOptions'=>['header'=>'Name', 'size'=>'md']
 
             ],
             'code:text:КОД',
@@ -79,17 +79,30 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
             [
-                'class' => 'kartik\grid\EditableColumn',
+               // 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'sit.sit',
                 'label'=>'Магазин',
                 'vAlign'=>'middle',
                 'headerOptions'=>['class'=>'kv-sticky-column'],
                 'contentOptions'=>['class'=>'kv-sticky-column'],
-                'editableOptions'=>['header'=>'sit.sit', 'size'=>'md']
+               // 'editableOptions'=>['header'=>'sit', 'size'=>'md']
 
             ],
 
             'place:text:Полка',
+
+            [
+                'class' => 'kartik\grid\ExpandRowColumn',
+                'width' => '50px',
+                'value' => function ($model, $key, $index, $column) {
+                    return GridView::ROW_COLLAPSED;
+                },
+                'detail' => function ($model, $key, $index, $column) {
+                    return '';//Yii::$app->controller->renderPartial('_expand-row-details', ['model' => $model]);
+                },
+                'headerOptions' => ['class' => 'kartik-sheet-style'] ,
+                'expandOneOnly' => true
+            ],
 
             'mark:text:Марка',
             'body:text:Кузов',
@@ -162,7 +175,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
             [
-                'attribute'=>'top_botton',
+                'attribute'=>'top_bottom',
                 'label'=>'Верх\Низ',
                 'format'=>'raw',
                 'filter' => [
@@ -196,18 +209,45 @@ $this->params['breadcrumbs'][] = $this->title;
             'code_manufacturer:text:Код манифактуры',
             'optics:text:Оптика',
             [
-                'class' => 'kartik\grid\EditableColumn',
+               // 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'delevery.delevery',
                 'label'=>'Поставка',
                 'vAlign'=>'middle',
                 'headerOptions'=>['class'=>'kv-sticky-column'],
                 'contentOptions'=>['class'=>'kv-sticky-column'],
-                'editableOptions'=>['header'=>'delevery.delevery', 'size'=>'md']
+               // 'editableOptions'=>['header'=>'delevery_id', 'size'=>'md']
 
             ],
-            'sell_price:text:Цена',
-            'purchase_price:text:Цена',
-            'margin:text:Маржа',
+            [
+                'class' => 'kartik\grid\FormulaColumn',
+                'attribute' => 'sell_price',
+                'label'=>'Закупочная',
+                'vAlign' => 'middle',
+                'hAlign' => 'right',
+                'width' => '7%',
+                'format' => ['decimal', 2],
+                'pageSummary' => true
+            ],
+            [
+                'class' => 'kartik\grid\FormulaColumn',
+                'attribute' => 'purchase_price',
+                'label'=>'продажная',
+                'vAlign' => 'middle',
+                'hAlign' => 'right',
+                'width' => '7%',
+                'format' => ['decimal', 2],
+                'pageSummary' => true
+            ],
+            [
+                'class' => 'kartik\grid\FormulaColumn',
+                'attribute' => 'margin',
+                'label'=>'Маржа',
+                'vAlign' => 'middle',
+                'hAlign' => 'right',
+                'width' => '7%',
+                'format' => ['decimal', 2],
+                'pageSummary' => true
+            ],
 
             [
                 'attribute' => 'created_at',
@@ -222,13 +262,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'options' => ['width' => '140']
             ],
             [
-                'class' => 'kartik\grid\EditableColumn',
-                'attribute' => 'user.username',
+                //'class' => 'kartik\grid\EditableColumn',
+                'attribute' => 'users.username',
                 'label'=>'Данные обновил',
                 'vAlign'=>'middle',
                 'headerOptions'=>['class'=>'kv-sticky-column'],
                 'contentOptions'=>['class'=>'kv-sticky-column'],
-                'editableOptions'=>['header'=>'user.username', 'size'=>'md']
+                //'editableOptions'=>['header'=>'owner', 'size'=>'md']
 
 
 
@@ -255,8 +295,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'viewOptions'=>['title'=>$viewMsg, 'data-toggle'=>'tooltip'],
                 'updateOptions'=>['title'=>$updateMsg, 'data-toggle'=>'tooltip'],
                 'deleteOptions'=>['title'=>$deleteMsg, 'data-toggle'=>'tooltip'],
+                //'headerOptions' => ['class' => 'kartik-sheet-style'],
             ],
-            ['class' => 'kartik\grid\CheckboxColumn']
+            [
+                'class' => 'kartik\grid\CheckboxColumn',
+                'headerOptions' => ['class' => 'kartik-sheet-style']
+            ]
         ],
         'containerOptions' => ['style'=>'overflow: auto'], // only set when $responsive = false
         'beforeHeader'=>[
@@ -275,10 +319,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ]
         ],
         'toolbar' =>  [
-//            ['content'=>
-//                Html::button('&lt;i class="glyphicon glyphicon-plus">&lt;/i>', ['type'=>'button', 'title'=>Yii::t('kvgrid', 'Add Book'), 'class'=>'btn btn-success', 'onclick'=>'alert("This will launch the book creation form.\n\nDisabled for this demo!");']) . ' '.
-//                Html::a('&lt;i class="glyphicon glyphicon-repeat">&lt;/i>', ['grid-demo'], ['data-pjax'=>0, 'class' => 'btn btn-default', 'title'=>Yii::t('kvgrid', 'Reset Grid')])
-//            ],
+            ['content'=>
+                Html::button('<i class="glyphicon glyphicon-plus"></i>', ['type'=>'button', 'title'=>Yii::t('kvgrid', 'Add Book'), 'class'=>'btn btn-success', 'onclick'=>'alert("будет ссылка на создание поставки");']) . ' '.
+                Html::a('<i class="glyphicon glyphicon-repeat"></i>', ['grid-demo'], ['data-pjax'=>0, 'class' => 'btn btn-default', 'title'=>Yii::t('kvgrid', 'Reset Grid')])
+            ],
             '{export}',
             '{toggleData}'
         ],
@@ -290,7 +334,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'responsive' => true,
         'hover' => true,
         'floatHeader' => true,
-        'floatHeaderOptions' => ['scrollingTop' => $scrollingTop],
+       // 'floatHeaderOptions' => ['scrollingTop' => $scrollingTop],
         'showPageSummary' => false,
         'panel' => [
             'type' => GridView::TYPE_PRIMARY

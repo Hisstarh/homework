@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'owner',
             'delevery_date',
             'description',
-            //'sit_id',
+            'sit.sit',
             //'status',
             //'created_at',
             //'updated_at',

@@ -78,4 +78,8 @@ class Delevery extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Sit::className(), ['id' => 'sit_id']);
     }
+    public function getUsers()
+    {
+        return $this->hasOne(Users::className(), ['id' => 'owner']);
+    }
 }

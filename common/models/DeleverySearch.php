@@ -41,7 +41,7 @@ class DeleverySearch extends Delevery
      */
     public function search($params)
     {
-        $query = Delevery::find();
+        $query = Delevery::find()->with('sit','users');
 
         // add conditions that should always apply here
 
@@ -62,6 +62,7 @@ class DeleverySearch extends Delevery
             'id' => $this->id,
             'delevery_date' => $this->delevery_date,
             'sit_id' => $this->sit_id,
+            'owner' => $this->owner,
             'status' => $this->status,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

@@ -9,6 +9,9 @@ use common\models\Articles;
 
 /**
  * ArticlesSearch represents the model behind the search form of `common\models\Articles`.
+ * @property mixed delevery_id
+ * @property mixed update_user
+ * @property mixed sit_id
  */
 class ArticlesSearch extends Articles
 {
@@ -18,8 +21,8 @@ class ArticlesSearch extends Articles
     public function rules()
     {
         return [
-            [['id', 'status', 'created_at', 'updated_at'], 'integer'],
-            [['name', 'model'], 'safe'],
+            [['id', 'status', 'created_at', 'updated_at','update_user','sit_id','delevery_id','top_bottom','front_rear','left_right'], 'integer'],
+            [['name', 'place', 'mark', 'body', 'drive', 'model', 'description', 'code_manufacturer', 'optics'], 'safe'],
         ];
     }
 
@@ -41,7 +44,7 @@ class ArticlesSearch extends Articles
      */
     public function search($params)
     {
-        $query = Articles::find();
+        $query = Articles::find()->with('sit','delevery','users');
 
         // add conditions that should always apply here
 
@@ -61,6 +64,9 @@ class ArticlesSearch extends Articles
         $query->andFilterWhere([
             'id' => $this->id,
             'status' => $this->status,
+            'sit_id' => $this->sit_id,
+            'delevery_id' => $this->delevery_id,
+            'update_user' => $this->update_user,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);

@@ -35,7 +35,7 @@ class Articles extends \yii\db\ActiveRecord
             [['name', 'model', ], 'required'],
             [['code'], 'integer', 'max' => 13],
             [['code'], 'unique'],
-            [['code','left_right','front_rear','top_button','status', 'created_at', 'updated_at'], 'integer'],
+            [['code','left_right','front_rear','top_bottom','status', 'created_at', 'updated_at','update_user'], 'integer'],
             [['sell_price','purchase_price','margin'], 'double'],
             [['name', 'place', 'mark', 'body', 'drive', 'model', 'description', 'code_manufacturer', 'optics'], 'string', 'max' => 255],
             [['delevery_id'], 'exist', 'skipOnError' => true, 'targetClass' => Delevery::className(), 'targetAttribute' => ['delevery_id' => 'id']],
@@ -47,30 +47,49 @@ class Articles extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+    public function getDelevery()
+    {
+        return $this->hasMany(Delevery::className(), ['id' => 'delevery_id']);
+    }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUsers()
+    {
+        return $this->hasOne(Users::className(), ['id' => 'update_user']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSit()
+    {
+        return $this->hasOne(Sit::className(), ['id' => 'sit_id']);
+    }
 
     public function attributeLabels()
     {
         return [
             'id' => Yii::t('app', 'ID'),
             'code' => Yii::t('app', 'Code'),
-            'left_right' => Yii::t('app', 'Left_Right'),
-            'front_rear' => Yii::t('app', 'Front_Rear'),
-            'top_button' => Yii::t('app', 'Top_Button'),
-            'sell_price' => Yii::t('app', 'Sell_price'),
-            'purchase_price' => Yii::t('app', 'Purchase_price'),
+            'left_right' => Yii::t('app', 'Left Right'),
+            'front_rear' => Yii::t('app', 'Front Rear'),
+            'top_botton' => Yii::t('app', 'Top Botton'),
+            'sell_price' => Yii::t('app', 'Sell price'),
+            'purchase_price' => Yii::t('app', 'Purchase price'),
             'place' => Yii::t('app', 'Place'),
             'mark' => Yii::t('app', 'Mark'),
             'body' => Yii::t('app', 'Body'),
             'description' => Yii::t('app', 'Description'),
-            'code_manufacturer' => Yii::t('app', 'Code_manufacturer'),
+            'code_manufacturer' => Yii::t('app', 'Code manufacturer'),
             'optics' => Yii::t('app', 'Optics'),
             'name' => Yii::t('app', 'Name'),
             'model' => Yii::t('app', 'Model'),
             'status' => Yii::t('app', 'Status'),
-            'delevery_id' => Yii::t('app', 'Delevery_id'),
-            'sit_id' => Yii::t('app', 'Sit_id'),
-            'update_user' => Yii::t('app', 'Update_user'),
+            'delevery_id' => Yii::t('app', 'Delevery ID'),
+            'sit_id' => Yii::t('app', 'Sit ID'),
+            'update_user' => Yii::t('app', 'Update User'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
@@ -96,10 +115,10 @@ class Articles extends \yii\db\ActiveRecord
                     ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
                     // при обнавлении записи мы записываем в поля текщее время и дату
                     ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
-                ],
-            ],
+],
+],
 
 
-        ];
-    }
+];
+}
 }
