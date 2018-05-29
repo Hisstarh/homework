@@ -27,6 +27,15 @@ class ArticlesController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+//            [
+//                'class' => 'yii\filters\HttpCache',
+//                'only' => ['index', 'view'],
+//                'lastModified' => function ($action, $params) {
+//                    $q = new \yii\db\Query();
+//                    dump($params);
+//                    return '';
+//                },
+//            ],
         ];
     }
 

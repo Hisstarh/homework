@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use yii\widgets\Pjax;
+use backend\assets\AppAsset;
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\ArticlesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -113,133 +114,86 @@ $this->params['breadcrumbs'][] = $this->title;
             'drive:text:Двигатель',
             'model:text:Модель',
             'description:text:Описание',
-
             [
-                'attribute'=>'left',
-                'label'=>'Левая сторона',
-                'format'=>'raw',
-                'filter' => [
-                    false => 'не указано',
-                    true => 'Левая'
+                'class' => 'rikcage\combinedcolumn\CombinedDataColumn',//'common\components\grid\CombinedDataColumn',
+                'labelTemplate' => '{0}{1}{2}{3}{4}{5}',
+                'valueTemplate' => '{0}{1}{2}{3}{4}{5}',
+                'labels' => [
+                    'Расположение запчасти',
+                    ' ',
+                    ' ',
+                    ' ',
+                    ' ',
+                    ' ',
                 ],
-                'value' => function ($model, $key, $index, $column) {
-
-                    $active = $model->{$column->attribute} !== 0;
-                    if ($active) {
-                        return \yii\helpers\Html::tag(
-                            'span',
-                            'Левая',
-                            [
-                                'class' => 'label label-' . 'success',
-                            ]
-                        );
-                    } else {
-                        return \yii\helpers\Html::tag(
-                            'span',
-                            'не указано',
-                            [
-                                'class' => 'label label-' . 'danger',
-                            ]
-                        );
-                    }
-
-                },
-            ],
-            [
-                'attribute'=>'right',
-                'label'=>'Правая сторона',
-                'format'=>'raw',
-                'filter' => [
-                    false => 'не указано',
-                    true => 'Правая'
+                'attributes' => [
+                    'side_left:text',
+                    'side_right:text',
+                    'side_front:text',
+                    'side_rear:text',
+                    'side_top:text',
+                    'side_bottom:text'
                 ],
-                'value' => function ($model, $key, $index, $column) {
+                'values' => [
+                    function ($model, $_key, $_index, $_column) {
+                        return ($model->side_left)?'Левая; ':'';
+                    },
+                    function ($model, $_key, $_index, $_column) {
+                        return ($model->side_right)?'Правая; ':'';
+                    },
+                    function ($model, $_key, $_index, $_column) {
+                        return ($model->side_front)?'Передняя; ':'';
+                    },
+                    function ($model, $_key, $_index, $_column) {
+                        return ($model->side_rear)?'Задняя; ':'';
+                    },
+                    function ($model, $_key, $_index, $_column) {
+                        return ($model->side_top)?'Верхняя; ':'';
+                    },
+                    function ($model, $_key, $_index, $_column) {
+                        return ($model->side_bottom)?'Нижняя; ':'';
+                    },
+                ],
+                'filterTemplate' => '<div class="row">
+                                    <div class="col-md-10">{0}</div>
+                                    </div>',
 
-                    $active = $model->{$column->attribute} !== 0;
-                    if ($active) {
-                        return \yii\helpers\Html::tag(
-                            'span',
-                            'Правая',
-                            [
-                                'class' => 'label label-' . 'success',
-                            ]
-                        );
-                    } else {
-                        return \yii\helpers\Html::tag(
-                            'span',
-                            'не указано',
-                            [
-                                'class' => 'label label-' . 'danger',
-                            ]
-                        );
-                    }
 
-                },
+                    'filters'=> [ array('1' => 'Левая', '2' => 'Правая', '3' => 'Передняя', '4' => 'Задняя', '5' => 'Верхняя', '6' => 'Нижняя'),
+                        [
+                   0 => 'Левая; ',
+                    1 => 'Правая; ',
+                    2 => 'Передняя; ',
+                    3 => 'Задняя; ',
+                    4 => 'Верхняя; ',
+                    5 => 'Нижняя; ',
+                ],
+                        [
+                            0 => 'Левая; ',
+                            1 => 'Правая; ',
+                            2 => 'Передняя; ',
+                            3 => 'Задняя; ',
+                            4 => 'Верхняя; ',
+                            5 => 'Нижняя; ',
+                        ],
+                    //select for currency null,
+                    //input for rate
+                    ],
+//                'filter' =>[
+//                    0 => 'Левая; ',
+//                    1 => 'Правая; ',
+//                    2 => 'Передняя; ',
+//                    3 => 'Задняя; ',
+//                    4 => 'Верхняя; ',
+//                    5 => 'Нижняя; ',
+//                ],
+
+                'sortLinksOptions' => [
+                    ['class' => 'text-nowrap'],
+                    null,
+                ],
             ],
-//            [
-//                'attribute'=>'front_rear',
-//                'label'=>'Перед\Зад',
-//                'format'=>'raw',
-//                'filter' => [
-//                    0 => 'не указано',
-//                    1 => 'Перед',
-//                    2 => 'Зад',
-//                ],
-//                'value' => function ($model, $key, $index, $column) {
-//
-//                    $active = $model->{$column->attribute} !== 0;
-//                    if ($active) {
-//                        return \yii\helpers\Html::tag(
-//                            'span',
-//                            ($active==1) ? 'Перед' : 'Зад',
-//                            [
-//                                'class' => 'label label-' . 'success',
-//                            ]
-//                        );
-//                    } else {
-//                        return \yii\helpers\Html::tag(
-//                            'span',
-//                            'не указано',
-//                            [
-//                                'class' => 'label label-' . 'danger',
-//                            ]
-//                        );
-//                    }
-//
-//                },
-//            ],
-//            [
-//                'attribute'=>'top_bottom',
-//                'label'=>'Верх\Низ',
-//                'format'=>'raw',
-//                'filter' => [
-//                    0 => 'не указано',
-//                    1 => 'Верх',
-//                    2 => 'Низ',
-//                ],
-//                'value' => function ($model, $key, $index, $column) {
-//
-//                    $active = $model->{$column->attribute} !== 0;
-//                    if ($active) {
-//                        return \yii\helpers\Html::tag(
-//                            'span',
-//                            ($active==1) ? 'Верх' : 'Низ',
-//                            [
-//                                'class' => 'label label-' . 'success',
-//                            ]
-//                        );
-//                    } else {
-//                        return \yii\helpers\Html::tag(
-//                            'span',
-//                            'не указано',
-//                            [
-//                                'class' => 'label label-' . 'danger',
-//                            ]
-//                        );
-//                    }
-//
-//                },
-//            ],
+
             'code_manufacturer:text:Код манифактуры',
             'optics:text:Оптика',
             [
@@ -282,19 +236,42 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => ['decimal', 2],
                 'pageSummary' => true
             ],
-
             [
-                'attribute' => 'created_at',
-                'label'=>'Дата создания',
-                'format' =>  ['date', 'dd.MM.Y HH:mm:ss'],
-                'options' => ['width' => '140']
+                'class' => 'common\components\grid\CombinedDataColumn',
+                'labelTemplate' => '{0}  /  {1}',
+                'valueTemplate' => '{0}  /  {1}',
+                'labels' => [
+                    'Дата создания ',
+                    'Дата изменения',
+                ],
+                'attributes' => [
+                    'created_at:datetime',
+                    'updated_at:html',
+                ],
+                'values' => [
+                    null,
+                    function ($model, $_key, $_index, $_column) {
+                        return  Yii::$app->formatter->asDatetime($model->updated_at,"php:d.M.Y H:m:s" ) ;
+                    },
+                ],
+                'options' => ['width' => '140'],
+                'sortLinksOptions' => [
+                    ['class' => 'text-nowrap'],
+                    null,
+                ],
             ],
-            [
-                'attribute' => 'updated_at',
-                'label'=>'Дата изменения',
-                'format' =>  ['date', 'dd.MM.Y HH:mm:ss'],
-                'options' => ['width' => '140']
-            ],
+//            [
+//                'attribute' => 'created_at',
+//                'label'=>'Дата создания',
+//                'format' =>  ['date', 'dd.MM.Y HH:mm:ss'],
+//                'options' => ['width' => '140']
+//            ],
+//            [
+//                'attribute' => 'updated_at',
+//                'label'=>'Дата изменения',
+//                'format' =>  ['date', 'dd.MM.Y HH:mm:ss'],
+//                'options' => ['width' => '140']
+//            ],
             [
                 //'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'users.username',
@@ -337,10 +314,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'beforeHeader'=>[
             [
                 'columns'=>[
-                    ['content'=>'Товар', 'options'=>['colspan'=>6, 'class'=>'text-center warning']],
-                    ['content'=>'Дополнительная информация', 'options'=>['colspan'=>10, 'class'=>'text-center warning']],
+                    ['content'=>'Товар', 'options'=>['colspan'=>7, 'class'=>'text-center warning']],
+                    ['content'=>'Дополнительная информация', 'options'=>['colspan'=>9, 'class'=>'text-center warning']],
                     ['content'=>'Тарифы', 'options'=>['colspan'=>4, 'class'=>'text-center warning']],
-                    ['content'=>'Техническая информация', 'options'=>['colspan'=>4, 'class'=>'text-center warning']],
+                    ['content'=>'Техническая информация', 'options'=>['colspan'=>2, 'class'=>'text-center warning']],
                     [
                         'content'=>'Управление',
                         'options'=>['colspan'=>2, 'class'=>'text-center warning']

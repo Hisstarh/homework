@@ -6,7 +6,7 @@ use yii\helpers\FileHelper;
 use common\models\Db;
 class DbController extends Controller{
     //Путь к файлам БД по-умолчанию
-    public $dumpPath = '@common/db/';
+    public $dumpPath = '@common/db/dump';
     public function actionIndex($path = null){
         //Получаем массива путей к файлам с дампом БД (.sql)
         $path = FileHelper::normalizePath(Yii::getAlias($this->dumpPath));

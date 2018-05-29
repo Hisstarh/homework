@@ -26,17 +26,17 @@ class Articles extends \yii\db\ActiveRecord
         return '{{%articles}}';
     }
 
-        /**
+    /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['name', 'model', ], 'required'],
+            [['name', 'model',], 'required'],
             [['code'], 'integer', 'max' => 13],
             [['code'], 'unique'],
-            [['code','left','right','front','rear','top','bottom','status', 'created_at', 'updated_at','update_user'], 'integer'],
-            [['sell_price','purchase_price','margin'], 'double'],
+            [['code', 'side_left', 'side_right', 'side_front', 'side_rear', 'side_top', 'side_bottom', 'status', 'created_at', 'updated_at', 'update_user'], 'integer'],
+            [['sell_price', 'purchase_price', 'margin'], 'double'],
             [['name', 'place', 'mark', 'body', 'drive', 'model', 'description', 'code_manufacturer', 'optics'], 'string', 'max' => 255],
             [['delevery_id'], 'exist', 'skipOnError' => true, 'targetClass' => Delevery::className(), 'targetAttribute' => ['delevery_id' => 'id']],
             [['sit_id'], 'exist', 'skipOnError' => true, 'targetClass' => Sit::className(), 'targetAttribute' => ['sit_id' => 'id']],
@@ -73,12 +73,12 @@ class Articles extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'code' => Yii::t('app', 'Code'),
-            'left' => Yii::t('app', 'Left'),
-            'front' => Yii::t('app', 'Front'),
-            'top' => Yii::t('app', 'Top'),
-            'ight' => Yii::t('app', 'Right'),
-            'rear' => Yii::t('app', 'Rear'),
-            'botton' => Yii::t('app', 'Botton'),
+            'side_left' => Yii::t('app', 'Left'),
+            'side_front' => Yii::t('app', 'Front'),
+            'side_top' => Yii::t('app', 'Top'),
+            'side_right' => Yii::t('app', 'Right'),
+            'side_rear' => Yii::t('app', 'Rear'),
+            'side_botton' => Yii::t('app', 'Botton'),
             'sell_price' => Yii::t('app', 'Sell price'),
             'purchase_price' => Yii::t('app', 'Purchase price'),
             'place' => Yii::t('app', 'Place'),
@@ -110,6 +110,10 @@ class Articles extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
+            'TimestampBehavior' => [
+                'class' => \yii\behaviors\TimestampBehavior::className(),
+                'value' => function () { return date('Y-m-d H:i:s'); },
+            ],
             [
                 // объявляем класс
                 'class' => TimestampBehavior::className(),
@@ -118,10 +122,10 @@ class Articles extends \yii\db\ActiveRecord
                     ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
                     // при обнавлении записи мы записываем в поля текщее время и дату
                     ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
-],
-],
+                ],
+            ],
 
 
-];
-}
+        ];
+    }
 }
