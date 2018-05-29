@@ -62,7 +62,7 @@ class ArticlesSearch extends Articles
 
         $this->load($params);
 
-        // array load
+        // получение параметров для поиска
         $side_left = @$params['ArticlesSearch']['side_left'];
 //        $side_right = @$params['ArticlesSearch']['side_right'];
 //        $side_ront = @$params['ArticlesSearch']['side_front'];
