@@ -103,7 +103,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return GridView::ROW_COLLAPSED;
                 },
                 'detail' => function ($model, $key, $index, $column) {
-                    return '';//Yii::$app->controller->renderPartial('_expand-row-details', ['model' => $model]);
+                    return Yii::$app->controller->renderPartial('_expand-row-details', ['model' => $model]);
                 },
                 'headerOptions' => ['class' => 'kartik-sheet-style'] ,
                 'expandOneOnly' => true
@@ -238,23 +238,25 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'class' => 'common\components\grid\CombinedDataColumn',
-                'labelTemplate' => '{0}  /  {1}',
-                'valueTemplate' => '{0}  /  {1}',
+                'labelTemplate' => '{0} {1}',
+                'valueTemplate' => '{0} {1}',
                 'labels' => [
                     'Дата создания ',
                     'Дата изменения',
                 ],
                 'attributes' => [
-                    'created_at:datetime',
+                    'created_at:html',
                     'updated_at:html',
                 ],
                 'values' => [
-                    null,
                     function ($model, $_key, $_index, $_column) {
-                        return  Yii::$app->formatter->asDatetime($model->updated_at,"php:d.M.Y H:m:s" ) ;
+                        return  Yii::$app->formatter->asDatetime($model->created_at,"php:d.m.Y H:m" ) ;
+                    },
+                    function ($model, $_key, $_index, $_column) {
+                        return  Yii::$app->formatter->asDatetime($model->updated_at,"php:d.m.Y H:m" ) ;
                     },
                 ],
-                'options' => ['width' => '140'],
+                'options' => ['width' => '150'],
                 'sortLinksOptions' => [
                     ['class' => 'text-nowrap'],
                     null,

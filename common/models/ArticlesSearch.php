@@ -15,10 +15,13 @@ use common\models\Articles;
  * @property mixed sit_id
  * @property mixed side_left
  * @property mixed side_right
- * @property mixed side_ront
  * @property mixed side_rear
  * @property mixed side_top
  * @property mixed side_bottom
+ * @property mixed side_front
+ * @property mixed purchase_price
+ * @property mixed sell_price
+ * @property mixed margin
  */
 class ArticlesSearch extends Articles
 {
