@@ -15,6 +15,8 @@ use kartik\date\DatePicker;
         // идентификатор формы
         'id' => 'row-details-form',
       //  'layout'=>'horizontal',
+        'enableAjaxValidation' => false,
+        'enableClientValidation' => false,
         'options' => [
             // работает через pjax, т.е. обновляется без обновления страницы
             'data' => ['pjax' => true],
@@ -24,7 +26,7 @@ use kartik\date\DatePicker;
             'enctype' => 'multipart/form-data'
         ],
         'fieldConfig' => [
-            'template' => '<div class="col-md-3">{label}</div><div class="col-md-3">{input}</div><div class="col-md-1">{error}</div>',
+            'template' => '<div class="col-md-3">{label}</div><div class="col-md-3">{input}</div>',
 //            'horizontalCssClasses' => [
 //                'label' => 'col-sm-4',
 //                'offset' => 'col-sm-offset-4',
