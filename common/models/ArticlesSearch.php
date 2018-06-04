@@ -22,6 +22,8 @@ use common\models\Articles;
  * @property mixed purchase_price
  * @property mixed sell_price
  * @property mixed margin
+ * @property mixed place
+ * @property mixed code
  */
 class ArticlesSearch extends Articles
 {
@@ -31,7 +33,7 @@ class ArticlesSearch extends Articles
     public function rules()
     {
         return [
-            [['id', 'status', 'created_at', 'updated_at','update_user','sit_id','delevery_id','side_left','side_right','side_front','side_rear','side_top','side_bottom'], 'integer'],
+            [['id', 'code','status', 'created_at', 'updated_at','update_user','sit_id','delevery_id','side_left','side_right','side_front','side_rear','side_top','side_bottom'], 'integer'],
             [['name', 'place', 'mark', 'body', 'drive', 'model', 'description', 'code_manufacturer', 'optics'], 'safe'],
         ];
     }
@@ -83,7 +85,10 @@ class ArticlesSearch extends Articles
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'code' => $this->code,
+            'place'=> $this->place,
             'status' => $this->status,
+            'sell_price' => $this->sell_price,
             'sit_id' => $this->sit_id,
             'delevery_id' => $this->delevery_id,
             'update_user' => $this->update_user,

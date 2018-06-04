@@ -64,11 +64,11 @@ use kartik\date\DatePicker;
         ])
             ->label('Дата поставки');?>
 
-        <?= $form->field($model, 'purchase_price')->textInput(['value' => Yii::$app->formatter->asDecimal($model->purchase_price),'readOnly'=> true])->label('Закупочная цена');?>
+        <?= $form->field($model, 'purchase_price')->textInput(['value' => Yii::$app->formatter->asDecimal($model->purchase_price).' р','readOnly'=> true])->label('Закупочная цена');?>
 
-        <?= $form->field($model, 'sell_price')->textInput(['value' => Yii::$app->formatter->asDecimal($model->sell_price),'readOnly'=> true])->label('Продажная цена');?>
+        <?= $form->field($model, 'sell_price')->textInput(['value' => Yii::$app->formatter->asDecimal($model->sell_price) .' р','readOnly'=> true])->label('Продажная цена');?>
 
-        <?= $form->field($model, 'margin')->textInput(['value' => Yii::$app->formatter->asDecimal($model->margin),'readOnly'=> true])->label('Маржа');?>
+        <?= $form->field($model, 'margin')->textInput(['value' => Yii::$app->formatter->asDecimal($model->margin).' р','readOnly'=> true])->label('Маржа');?>
 
     </div>
 

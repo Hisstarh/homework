@@ -206,43 +206,43 @@ $this->params['breadcrumbs'][] = $this->title;
                // 'editableOptions'=>['header'=>'delevery_id', 'size'=>'md']
 
             ],
-            [
-                'class' => 'kartik\grid\FormulaColumn',
-                'attribute' => 'sell_price',
-                'label'=>'Закупочная',
-                'vAlign' => 'middle',
-                'hAlign' => 'right',
-                'width' => '7%',
-                'format' => ['decimal', 2],
-                'pageSummary' => true
-            ],
+//            [
+//                'class' => 'kartik\grid\FormulaColumn',
+//                'attribute' => 'sell_price',
+//                'label'=>'Закупочная',
+//                'vAlign' => 'middle',
+//                'hAlign' => 'right',
+//                'width' => '7%',
+//                'format' => ['decimal', 2],
+//                'pageSummary' => true
+//            ],
             [
                 'class' => 'kartik\grid\FormulaColumn',
                 'attribute' => 'purchase_price',
-                'label'=>'продажная',
+                'label'=>'Продажная Цена',
                 'vAlign' => 'middle',
                 'hAlign' => 'right',
                 'width' => '7%',
                 'format' => ['decimal', 2],
                 'pageSummary' => true
             ],
-            [
-                'class' => 'kartik\grid\FormulaColumn',
-                'attribute' => 'margin',
-                'label'=>'Маржа',
-                'vAlign' => 'middle',
-                'hAlign' => 'right',
-                'width' => '7%',
-                'format' => ['decimal', 2],
-                'pageSummary' => true
-            ],
+//            [
+//                'class' => 'kartik\grid\FormulaColumn',
+//                'attribute' => 'margin',
+//                'label'=>'Маржа',
+//                'vAlign' => 'middle',
+//                'hAlign' => 'right',
+//                'width' => '7%',
+//                'format' => ['decimal', 2],
+//                'pageSummary' => true
+//            ],
             [
                 'class' => 'common\components\grid\CombinedDataColumn',
-                'labelTemplate' => '{0} {1}',
-                'valueTemplate' => '{0} {1}',
+                'labelTemplate' => '{0} / {1}',
+                'valueTemplate' => '{0} / {1}',
                 'labels' => [
-                    'Дата создания ',
-                    'Дата изменения',
+                    'Дата поставки',
+                    'Последнее событие',
                 ],
                 'attributes' => [
                     'created_at:html',
@@ -277,7 +277,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 //'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'users.username',
-                'label'=>'Данные обновил',
+                'label'=>'Сделано',
                 'vAlign'=>'middle',
                 'headerOptions'=>['class'=>'kv-sticky-column'],
                 'contentOptions'=>['class'=>'kv-sticky-column'],
@@ -286,30 +286,33 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
             ],
-//            ['class' => 'yii\grid\ActionColumn',
-//                'template' => '{view} {update} {delete} {link}',
-//                'buttons' => [
-//                    'update' => function ($url,$model) {
-//                        return Html::a(
-//                            '<span class="glyphicon glyphicon-screenshot"></span>',
-//                            $url);
-//                    },
-//                    'link' => function ($url,$model,$key) {
-//                        return Html::a('Действие', $url);
-//                    },
-//                ],
-//            ],
-            [
-                'class' => 'kartik\grid\ActionColumn',
-                'dropdown' => true,
-                'vAlign'=>'middle',
+            ['class' => 'yii\grid\ActionColumn',
+                'template' => ' {sell} {update}',
                 'header'=>'Действия',
-                'urlCreator' => function($action, $model, $key, $index) { return '#'; },
-                'viewOptions'=>['title'=>$viewMsg, 'data-toggle'=>'tooltip'],
-                'updateOptions'=>['title'=>$updateMsg, 'data-toggle'=>'tooltip'],
-                'deleteOptions'=>['title'=>$deleteMsg, 'data-toggle'=>'tooltip'],
-                'headerOptions' => ['class' => 'kartik-sheet-style'],
+                'buttons' => [
+                    'update' => function ($url,$model) {
+                        return Html::a(
+                            '<span class="glyphicon glyphicon-screenshot"> Редктировать</span>',
+                            $url);
+                    },
+                    'sell' => function ($url,$model,$key) {
+                        return Html::a('<span class="glyphicon glyphicon-minus"> Продать</span>', $url);
+                    },
+                ],
             ],
+//            [
+//                'class' => 'kartik\grid\ActionColumn',
+//                'dropdown' => true,
+//                'vAlign'=>'middle',
+//                'header'=>'Действия',
+//                'urlCreator' => function($action, $model, $key, $index) {
+//                                    return '#';
+//                                },
+//                'viewOptions'=>['title'=>$viewMsg, 'data-toggle'=>'tooltip'],
+//                'updateOptions'=>['title'=>$updateMsg, 'data-toggle'=>'tooltip'],
+//              //  'deleteOptions'=>['title'=>$deleteMsg, 'data-toggle'=>'tooltip'],
+//                'headerOptions' => ['class' => 'kartik-sheet-style'],
+//            ],
 
         ],
         'containerOptions' => ['style'=>'overflow: auto'], // only set when $responsive = false
@@ -318,7 +321,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'columns'=>[
                     ['content'=>'Товар', 'options'=>['colspan'=>7, 'class'=>'text-center warning']],
                     ['content'=>'Дополнительная информация', 'options'=>['colspan'=>9, 'class'=>'text-center warning']],
-                    ['content'=>'Тарифы', 'options'=>['colspan'=>4, 'class'=>'text-center warning']],
+                    ['content'=>'Тарифы', 'options'=>['colspan'=>2, 'class'=>'text-center warning']],
                     ['content'=>'Техническая информация', 'options'=>['colspan'=>2, 'class'=>'text-center warning']],
                     [
                         'content'=>'Управление',
@@ -344,7 +347,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'responsive' => true,
         'hover' => true,
        // 'floatHeader' => true,
-       // 'floatHeaderOptions' => ['scrollingTop' => $scrollingTop],
+        'floatHeaderOptions' => ['scrollingTop' => $scrollingTop],
         'showPageSummary' => false,
         'panel' => [
             'type' => GridView::TYPE_PRIMARY
