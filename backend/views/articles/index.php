@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'name',
                 'label'=>'Название',
                 //'pageSummary' => 'Page Total',
-                'vAlign'=>'middle',
+                //'vAlign'=>'middle',
                 'headerOptions'=>['class'=>'kv-sticky-column'],
                 'contentOptions'=>['class'=>'kv-sticky-column'],
                 //'editableOptions'=>['header'=>'Name', 'size'=>'md']
@@ -84,12 +84,20 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
             [
-               // 'class' => 'kartik\grid\EditableColumn',
-                'attribute' => 'sit.sit',
+               // 'class' => 'yii\grid\SerialColumn',
+                'attribute' => 'sit_id',
                 'label'=>'Магазин',
-                'vAlign'=>'middle',
-                'headerOptions'=>['class'=>'kv-sticky-column'],
-                'contentOptions'=>['class'=>'kv-sticky-column'],
+
+               // 'vAlign'=>'middle',
+              //  'headerOptions'=>['class'=>'kv-sticky-column'],
+              // 'contentOptions'=>['class'=>'kv-sticky-column'],
+                'format'=>'raw',
+                'filter' => $filter_sit,
+                'value' => function($model, $key, $index, $column){
+                    $filters=[];
+                    $filters=\common\models\Sit::find()->select(['sit'])->where(['id'=>$model->sit_id])->one();
+                    return $filters->sit;
+                },
                // 'editableOptions'=>['header'=>'sit', 'size'=>'md']
 
             ],
@@ -198,11 +206,19 @@ $this->params['breadcrumbs'][] = $this->title;
             'optics:text:Оптика',
             [
                // 'class' => 'kartik\grid\EditableColumn',
-                'attribute' => 'delevery.delevery',
+                'attribute' => 'delevery_id',
                 'label'=>'Поставка',
                 'vAlign'=>'middle',
                 'headerOptions'=>['class'=>'kv-sticky-column'],
                 'contentOptions'=>['class'=>'kv-sticky-column'],
+                'format'=>'raw',
+                'filter' => $filter_delevery,
+                'value' => function($model, $key, $index, $column){
+                    $filters=[];
+                    $filters=\common\models\Delevery::find()->select(['delevery'])->where(['id'=>$model->delevery])->one();
+                    return $filters->sit;
+                },
+
                // 'editableOptions'=>['header'=>'delevery_id', 'size'=>'md']
 
             ],

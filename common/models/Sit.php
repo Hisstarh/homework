@@ -23,6 +23,9 @@ use Yii;
  */
 class Sit extends \yii\db\ActiveRecord
 {
+    const STATUS_CLOSE = 0;
+    const STATUS_ACTIVE = 10;
+
     /**
      * {@inheritdoc}
      */
@@ -37,6 +40,8 @@ class Sit extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            ['status', 'default', 'value' => self::STATUS_ACTIVE],
+            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_CLOSE]],
             [['sit', 'owner', 'adress', 'priceform_id', 'created_at', 'updated_at'], 'required'],
             [['margin_on_sit', 'priceform_id', 'created_at', 'updated_at'], 'integer'],
             [['sit', 'owner', 'adress'], 'string', 'max' => 255],
@@ -54,11 +59,17 @@ class Sit extends \yii\db\ActiveRecord
             'sit' => Yii::t('app', 'Sit'),
             'owner' => Yii::t('app', 'Owner'),
             'adress' => Yii::t('app', 'Adress'),
+            'status' => Yii::t('app', 'Status'),
             'margin_on_sit' => Yii::t('app', 'Margin On Sit'),
             'priceform_id' => Yii::t('app', 'Priceform ID'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
+    }
+
+    public static function findSit($id)
+    {
+        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
     }
 
     /**

@@ -27,14 +27,15 @@ use common\models\Articles;
  */
 class ArticlesSearch extends Articles
 {
+
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['id', 'code','status', 'created_at', 'updated_at','update_user','sit_id','delevery_id','side_left','side_right','side_front','side_rear','side_top','side_bottom'], 'integer'],
-            [['name', 'place', 'mark', 'body', 'drive', 'model', 'description', 'code_manufacturer', 'optics'], 'safe'],
+            [['id', 'code','status', 'created_at', 'updated_at','update_user','side_left','side_right','side_front','side_rear','side_top','side_bottom'], 'integer'],
+            [['name', 'place', 'mark', 'body', 'drive', 'model', 'description', 'code_manufacturer', 'optics','sit_id','delevery_id','sit', 'delevery'], 'safe'],
         ];
     }
 
@@ -56,6 +57,7 @@ class ArticlesSearch extends Articles
      */
     public function search($params)
     {
+        dump($params);
         $query = Articles::find()->with('sit','delevery','users');
 
         // add conditions that should always apply here
@@ -139,4 +141,10 @@ class ArticlesSearch extends Articles
 
         return $dataProvider;
     }
+
+    /**
+     * @param mixed $tags
+     * @return ArticlesSearch
+     */
+
 }

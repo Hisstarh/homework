@@ -18,6 +18,8 @@ use yii\db\ActiveRecord;
  */
 class Articles extends \yii\db\ActiveRecord
 {
+
+
     /**
      * {@inheritdoc}
      */

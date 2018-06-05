@@ -18,6 +18,14 @@ class ArticlesController extends Controller
     /**
      * {@inheritdoc}
      */
+    public function getFilters($data,$id,$name)
+    {
+        $rezult=array();
+        foreach ($data as $key=>$value) {
+            $rezult[$value[$id]] = $value[$name];
+        }
+        return $rezult;
+    }
     public function behaviors()
     {
         return [
@@ -47,10 +55,15 @@ class ArticlesController extends Controller
     {
         $searchModel = new ArticlesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $filters=[];
+        $rezult=array();
+        $filters=\common\models\Sit::find()->select(['id','sit'])->asArray()->all();
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'filter_sit' => self::getFilters(\common\models\Sit::find()->select(['id','sit'])->asArray()->all(),'id','sit'),
+            'filter_delevery' => self::getFilters(\common\models\Delevery::find()->select(['id','delevery'])->asArray()->all(),'id','delevery'),
         ]);
     }
 
