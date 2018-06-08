@@ -37,11 +37,12 @@ class Delevery extends \yii\db\ActiveRecord
     {
         return [
             [['delevery', 'owner', 'delevery_date', 'created_at', 'updated_at'], 'required'],
-            [['delevery_date', 'sit_id', 'status', 'created_at', 'updated_at'], 'integer'],
+            [[ 'sit_id', 'status', 'created_at', 'updated_at'], 'integer'],
             [['delevery', 'description'], 'string', 'max' => 255],
             [['owner'], 'string', 'max' => 32],
             [['delevery'], 'unique'],
             [['sit_id'], 'exist', 'skipOnError' => true, 'targetClass' => Sit::className(), 'targetAttribute' => ['sit_id' => 'id']],
+            [['owner'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['owner' => 'id']],
         ];
     }
 

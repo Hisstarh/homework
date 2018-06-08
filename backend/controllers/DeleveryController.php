@@ -14,6 +14,14 @@ use yii\filters\VerbFilter;
  */
 class DeleveryController extends Controller
 {
+    public function getFilters($data,$id,$name)
+    {
+        $rezult=array();
+        foreach ($data as $key=>$value) {
+            $rezult[$value[$id]] = $value[$name];
+        }
+        return $rezult;
+    }
     /**
      * {@inheritdoc}
      */
@@ -41,6 +49,7 @@ class DeleveryController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'filter_sit' => self::getFilters(\common\models\Sit::find()->select(['id','sit'])->asArray()->all(),'id','sit'),
         ]);
     }
 
@@ -72,6 +81,8 @@ class DeleveryController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'filter_sit' => self::getFilters(\common\models\Sit::find()->select(['id','sit'])->asArray()->all(),'id','sit'),
+            'filter_user' => self::getFilters(\common\models\Users::find()->select(['id','username'])->asArray()->all(),'id','username'),
         ]);
     }
 

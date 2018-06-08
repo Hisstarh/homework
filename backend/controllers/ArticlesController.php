@@ -26,6 +26,7 @@ class ArticlesController extends Controller
         }
         return $rezult;
     }
+
     public function behaviors()
     {
         return [

@@ -349,8 +349,18 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'toolbar' =>  [
             ['content'=>
-                Html::button('<i class="glyphicon glyphicon-plus"></i>', ['type'=>'button', 'title'=>Yii::t('kvgrid', 'Add Book'), 'class'=>'btn btn-success', 'onclick'=>'alert("будет ссылка на создание поставки");']) . ' '.
-                Html::a('<i class="glyphicon glyphicon-repeat"></i>', ['grid-demo'], ['data-pjax'=>0, 'class' => 'btn btn-default', 'title'=>Yii::t('kvgrid', 'Reset Grid')])
+                Html::a(
+                        '<i class="glyphicon glyphicon-plus"></i>'
+                        ,['/delevery/create']
+                        ,[
+                                //'data-pjax'=>0,
+                                 'class' => 'btn btn-default',
+                                 'title'=>Yii::t('kvgrid', 'Добавление артикулов')
+                        ]
+
+
+                ) . ' '.
+                Html::a('<i class="glyphicon glyphicon-repeat"></i>', ['index'], ['data-pjax'=>0, 'class' => 'btn btn-default', 'title'=>Yii::t('kvgrid', 'Обновить данные')])
             ],
             '{export}',
             '{toggleData}'
