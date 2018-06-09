@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use unclead\multipleinput\MultipleInput;
+use unclead\multipleinput\MultipleInputColumn;
 use kartik\datetime\DateTimePicker;
 
 /* @var $this yii\web\View */
@@ -18,11 +19,13 @@ use kartik\datetime\DateTimePicker;
 
     <?= $form->field($model, 'owner')->dropDownList($filter_user, ['prompt' =>'Выберите владельца'])->label('Менеджер поставки')  ?>
 
-    <?= $form->field($model, 'delevery_date')->textInput()->widget(DateTimePicker::className(), [
+    <?= $form->field($model, 'delevery_date')->widget(DateTimePicker::className(), [
         'name' => 'delevery_date',
+        'options' => ['placeholder' => 'Установите Дату поставки'],
         'value' => Yii::$app->formatter->asDate($model->delevery_date, 'dd.MM.yyyy'),
         'pluginOptions' => [
-            'format' => 'D, dd-M-yyyy, hh:ii'
+            'format' => 'D, dd-M-yyyy, hh:ii',
+            'autoclose' => true
         ]
     ])->label('Запланированная дата поставки в магазин') ?>
 
@@ -35,17 +38,43 @@ use kartik\datetime\DateTimePicker;
         'cloneButton' => true,
         'columns' => [
             [
-                'name'  => 'id',
+                'name'  => 'code',
+                'title' => 'КОД',
+                'options' => [
+                    'type' => 'number',
+                    'class' => 'input-priority',
+                ]
+
+            ],
+            [
+                'name'  => 'name',
                 //'type'  => 'dropDownList',
                 'title' => 'Артикулы',
-               // 'defaultValue' => 1,
-//                'items' => [
-//                    1 => 'id: 1, price: $19.99, title: product1',
-//                    2 => 'id: 2, price: $29.99, title: product2',
-//                    3 => 'id: 3, price: $39.99, title: product3',
-//                    4 => 'id: 4, price: $49.99, title: product4',
-//                    5 => 'id: 5, price: $59.99, title: product5',
-//                ],
+                'options' => [
+                    'type' => 'string',
+                    'class' => 'input-priority',
+                ]
+            ],
+            [
+                'name'  => 'side_left',
+                'type'  => MultipleInputColumn::TYPE_CHECKBOX_LIST,
+                'title' => 'Сторона',
+                'headerOptions' => [
+                    'style' => 'width: 120px;'
+                ],
+                'options' => [
+                    'style' => 'width: 120px; background-color: #fff; border: 1px solid #ccc; padding: 6px 12px;'
+                ],
+                'items' => [
+                    0 => 'Левая ',
+                    1 => 'Правая ',
+                    2 => 'Передняя ',
+                    3 => 'Задняя ',
+                    4 => 'Верхняя ',
+                    5 => 'Нижняя '
+
+                ],
+
             ],
 //            [
 //                'name'  => 'time',

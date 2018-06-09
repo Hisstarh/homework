@@ -71,11 +71,7 @@ class ArticlesSearch extends Articles
 
         // получение параметров для поиска
         $side_left = @$params['ArticlesSearch']['side_left'];
-//        $side_right = @$params['ArticlesSearch']['side_right'];
-//        $side_ront = @$params['ArticlesSearch']['side_front'];
-//        $side_ear = @$params['ArticlesSearch']['side_rear'];
-//        $side_top = @$params['ArticlesSearch']['side_top'];
-//        $side_bottom = @$params['ArticlesSearch']['side_bottom'];
+
 
 
         if (!$this->validate()) {

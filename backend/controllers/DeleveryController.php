@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use common\models\Delevery;
+use common\models\ArticlesSearch;
 use common\models\DeleverySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -46,9 +47,12 @@ class DeleveryController extends Controller
         $searchModel = new DeleverySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+
+           // 'dataProviderArticles'=>$dataProviderArticles,
             'filter_sit' => self::getFilters(\common\models\Sit::find()->select(['id','sit'])->asArray()->all(),'id','sit'),
         ]);
     }
@@ -74,13 +78,15 @@ class DeleveryController extends Controller
     public function actionCreate()
     {
         $model = new Delevery();
-
+        $searchModelArticles = new ArticlesSearch();
+        $dataProviderArticles = $searchModelArticles->search(Yii::$app->request->queryParams);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'searchModelArticles' => $searchModelArticles,
             'filter_sit' => self::getFilters(\common\models\Sit::find()->select(['id','sit'])->asArray()->all(),'id','sit'),
             'filter_user' => self::getFilters(\common\models\Users::find()->select(['id','username'])->asArray()->all(),'id','username'),
         ]);

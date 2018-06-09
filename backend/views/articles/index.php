@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use yii\widgets\Pjax;
+use kartik\datetime\DateTimePicker;
 use backend\assets\AppAsset;
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\ArticlesSearch */
@@ -272,6 +273,24 @@ $this->params['breadcrumbs'][] = $this->title;
                         return  Yii::$app->formatter->asDatetime($model->updated_at,"php:d.m.Y H:m" ) ;
                     },
                 ],
+                'filter' =>DateTimePicker::widget([
+                        'name' => 'created_at',
+                        'type' => DateTimePicker::TYPE_INPUT,
+                        'options' => ['placeholder' => 'Дата поставки'],
+                        'pluginOptions' => [
+                            'format' => 'D, dd-M-yyyy, hh:ii',
+                            'autoclose' => true
+                        ]
+                    ]),
+//                    DateTimePicker::widget([
+//                        'name' => 'updated_at',
+//                        'value' => Yii::$app->formatter->asDate($model->delevery_date, 'dd.MM.yyyy'),
+//                        'pluginOptions' => [
+//                            'format' => 'D, dd-M-yyyy, hh:ii',
+//                            'autoclose' => true
+//                        ]
+//                    ])
+              //  ],
                 'options' => ['width' => '150'],
                 'sortLinksOptions' => [
                     ['class' => 'text-nowrap'],

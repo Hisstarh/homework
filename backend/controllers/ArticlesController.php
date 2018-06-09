@@ -56,15 +56,13 @@ class ArticlesController extends Controller
     {
         $searchModel = new ArticlesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $filters=[];
-        $rezult=array();
-        $filters=\common\models\Sit::find()->select(['id','sit'])->asArray()->all();
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'filter_sit' => self::getFilters(\common\models\Sit::find()->select(['id','sit'])->asArray()->all(),'id','sit'),
             'filter_delevery' => self::getFilters(\common\models\Delevery::find()->select(['id','delevery'])->asArray()->all(),'id','delevery'),
+
         ]);
     }
 
